@@ -29,6 +29,21 @@ def load_image(path: str, log_info: bool = True) -> np.ndarray:
     return img
 
 
+def show_image(img: np.ndarray, title: str) -> None:
+    # TODO: make it save image under title? Make it an option
+    logging.info(f"showing image - title: {title}")
+    plt.imshow(img)
+    plt.title(title)
+    plt.show(block=True)
+
+
+def load_cloverfield_image() -> np.ndarray:
+    IMAGE_PATH = os.path.join("data", "cloverleaf_interchange.png")
+    img = load_image(IMAGE_PATH)
+
+    return img
+
+
 def calc_histogram(
     img: np.ndarray,
 ) -> Tuple[Dict[Colour, np.ndarray], Dict[Colour, np.ndarray]]:
@@ -77,17 +92,9 @@ def visualise_histograms(
         axes[i, 1].plot(opencv[colour], color=col_val)
         axes[i, 1].set_title(f"{col_val} - opencv histogram")
         axes[i, 1].set_xlim(0, 255)
-
     fig.suptitle("Image Histograms")
 
     logging.info("showing histograms ... ")
-    plt.show(block=True)
-
-
-def show_image(img: np.ndarray, title: str) -> None:
-    # TODO: make it save image under title? Make it an option
-    plt.imshow(img)
-    plt.title(title)
     plt.show(block=True)
 
 
@@ -95,9 +102,8 @@ if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s - %(levelname)s : %(message)s"
     )
-    IMAGE_PATH = os.path.join("data", "cloverleaf_interchange.png")
 
-    img = load_image(IMAGE_PATH)
+    img = load_cloverfield_image()
     show_image(img, "initial image")
 
     custom_hist, open_cv_hist = calc_histogram(img)
