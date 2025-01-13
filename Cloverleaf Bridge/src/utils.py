@@ -35,9 +35,9 @@ def load_cloverfield_image() -> np.ndarray:
     return img
 
 
-def show_image(img: np.ndarray, title: str) -> None:
+def show_image(img: np.ndarray, title: str, **imshow_kwargs) -> None:
     # TODO: make it an option to save image under title
     logging.info(f"showing image - title: {title} ... ")
-    plt.imshow(img)
+    plt.imshow(img, **imshow_kwargs)
     plt.title(title)
     plt.show(block=True)
