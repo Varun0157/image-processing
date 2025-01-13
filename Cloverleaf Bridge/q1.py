@@ -18,6 +18,7 @@ def load_image(path: str, log_info: bool = True) -> np.ndarray:
     img = cv2.imread(path)
 
     if log_info:
+        # TODO: clarify what else is meant by 'distribution'
         logging.info(f"loaded image from {path}")
         logging.info(f"\tshape: {img.shape}")
         logging.info(f"\tdtype: {img.dtype}")
@@ -63,6 +64,7 @@ def visualise_histograms(
     # TODO:
     # 1. add a mixed visualisation that shows the mix of all three in a single plot, for both
     # 2. add a binary version that convers to black and white and plots both - still maintain the columns, though.
+    # 3. push the histograms relevant code to a new module entirely
 
     fig, axes = plt.subplots(3, 2, figsize=(12, 8))
     for i, colour in enumerate([Colour.BLUE, Colour.GREEN, Colour.RED]):
@@ -83,6 +85,7 @@ def visualise_histograms(
 
 
 def show_image(img: np.ndarray, title: str) -> None:
+    # TODO: make it save image under title? Make it an option
     plt.imshow(img)
     plt.title(title)
     plt.show(block=True)
