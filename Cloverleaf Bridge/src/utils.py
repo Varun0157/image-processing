@@ -7,6 +7,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+def get_save_path() -> str:
+    return "res"
+
+
 class Colour(Enum):
     RED = "RED"
     BLUE = "BLUE"
@@ -35,9 +39,15 @@ def load_cloverfield_image() -> np.ndarray:
     return img
 
 
-def show_image(img: np.ndarray, title: str, **imshow_kwargs) -> None:
-    # TODO: make it an option to save image under title
+def show_image(img: np.ndarray, title: str, save: bool, **im_kwargs) -> None:
     logging.info(f"showing image - title: {title} ... ")
-    plt.imshow(img, **imshow_kwargs)
+    plt.imshow(img, **im_kwargs)
     plt.title(title)
     plt.show(block=True)
+
+    if not save:
+        return
+
+    file_path = os.path.join(get_save_path(), f"{title}.png")
+    plt.imsave(file_path, img, **im_kwargs)
+    logging.info(f"saved image to {file_path}")

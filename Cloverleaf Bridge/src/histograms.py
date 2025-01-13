@@ -8,7 +8,7 @@ import cv2
 from src.utils import Colour
 
 
-def calc_histogram(
+def get_histograms(
     img: np.ndarray,
 ) -> Tuple[Dict[Colour, np.ndarray], Dict[Colour, np.ndarray]]:
     NUM_CHANNELS = img.shape[2]
