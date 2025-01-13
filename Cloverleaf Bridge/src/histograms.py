@@ -24,19 +24,17 @@ def get_histograms(
 
     custom_hist, custom_time = {}, 0
     opencv_hist, opencv_time = {}, 0
-    for i, colour in enumerate(COLOURS):
-        channel = img[:, :, i]
-
+    for channel, colour in enumerate(COLOURS):
         start_time = time.time()
         custom_channel_hist = np.zeros(NUM_LEVELS)
-        for intensity in channel.flatten():
+        for intensity in img[:, :, channel].flatten():
             custom_channel_hist[intensity] += 1
         custom_hist[colour] = custom_channel_hist
         custom_time += time.time() - start_time
 
         start_time = time.time()
         opencv_channel_hist = cv2.calcHist(
-            [img], [i], None, [NUM_LEVELS], [0, NUM_LEVELS]
+            [img], [channel], None, [NUM_LEVELS], [0, NUM_LEVELS]
         ).flatten()
         opencv_hist[colour] = opencv_channel_hist
         opencv_time += time.time() - start_time
