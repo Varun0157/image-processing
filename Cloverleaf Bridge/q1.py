@@ -60,6 +60,10 @@ def calc_histogram(
 def visualise_histograms(
     custom: Dict[Colour, np.ndarray], opencv: Dict[Colour, np.ndarray]
 ) -> None:
+    # TODO:
+    # 1. add a mixed visualisation that shows the mix of all three in a single plot, for both
+    # 2. add a binary version that convers to black and white and plots both - still maintain the columns, though.
+
     fig, axes = plt.subplots(3, 2, figsize=(12, 8))
     for i, colour in enumerate([Colour.BLUE, Colour.GREEN, Colour.RED]):
         col_val = colour.value.lower()
@@ -71,15 +75,17 @@ def visualise_histograms(
         axes[i, 1].plot(opencv[colour], color=col_val)
         axes[i, 1].set_title(f"{col_val} - opencv histogram")
         axes[i, 1].set_xlim(0, 255)
-    fig.tight_layout()
+
+    fig.suptitle("Image Histograms")
 
     logging.info("showing histograms ... ")
-    plt.show()
+    plt.show(block=True)
 
 
-def show_image(img: np.ndarray) -> None:
-    # TODO: create a title param and add it to the image plot
+def show_image(img: np.ndarray, title: str) -> None:
     plt.imshow(img)
+    plt.title(title)
+    plt.show(block=True)
 
 
 if __name__ == "__main__":
@@ -88,9 +94,8 @@ if __name__ == "__main__":
     )
     IMAGE_PATH = os.path.join("data", "cloverleaf_interchange.png")
 
-    # TODO: make the images show in a blocking manner rather than all at once
     img = load_image(IMAGE_PATH)
-    show_image(img)
+    show_image(img, "initial image")
 
     custom_hist, open_cv_hist = calc_histogram(img)
     visualise_histograms(custom_hist, open_cv_hist)
