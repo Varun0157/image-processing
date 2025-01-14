@@ -34,6 +34,7 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
     return out
 
 
+# TODO: create a mark_radii option and use that to distinguish between 2.2.1 and 2.2.2
 def mark_circles(img: np.ndarray) -> np.ndarray:
     logging.info("finding circles in the image ... ")
     processed = preprocess_image(img)
@@ -59,14 +60,34 @@ def mark_circles(img: np.ndarray) -> np.ndarray:
 
     annotated = img.copy()
 
+    OUTER_COLOUR, CENTER_COLOUR = (0, 255, 0), (255, 0, 0)
     circles = np.round(circles).astype("int")
     for i in circles[0, :]:
         center, rad = (i[0], i[1]), i[2]
-        # outer circle
-        cv2.circle(annotated, center, rad, (0, 255, 0), 2)
-        # center of the circle
-        cv2.circle(annotated, center, 2, (255, 0, 0), 3)
+        cv2.circle(annotated, center, rad, OUTER_COLOUR, 2)
+        cv2.circle(annotated, center, 2, CENTER_COLOUR, 3)
 
-        logging.info(f"\tcircle at {center} with radius {rad}")
+        cv2.putText(
+            annotated,
+            f"r={rad}",
+            (center[0] + rad // 4, center[1] + rad // 4),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1,
+            OUTER_COLOUR,
+            2,
+        )
+
+        center_text = f"({int(center[0])},{int(center[1])})"
+        cv2.putText(
+            annotated,
+            center_text,
+            (center[0] - rad // 4, center[1] - rad // 4),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1,
+            CENTER_COLOUR,
+            2,
+        )
+
+        logging.info(f"\tcircle at {center_text} with radius {rad}")
 
     return annotated
