@@ -34,12 +34,14 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
     return out
 
 
-def find_circles(img: np.ndarray) -> np.ndarray:
+def mark_circles(img: np.ndarray) -> np.ndarray:
     logging.info("finding circles in the image ... ")
     processed = preprocess_image(img)
 
     # NOTE: issue faced - too many circles -> asked Claude for recommendations
     # show some of the other params messed with as well. Took a while to reach this result.
+    # also mention that asking for how to find circles is what led you to HoughCircles in the first place.
+    # show the code in the docs as a reference.
     circles = cv2.HoughCircles(
         processed,
         cv2.HOUGH_GRADIENT,
