@@ -23,41 +23,50 @@ def detect_cloverleaves(img: np.ndarray) -> np.ndarray:
     _, out = cv2.threshold(out, 0, L, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     show_image(out, "thresholded", False, cmap="gray")
 
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
+
+    out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel, iterations=1)
+    show_image(out, "morphed - close", False, cmap="gray")
+
+    out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel, iterations=1)
+    show_image(out, "morphed - open", False, cmap="gray")
+
     out = cv2.equalizeHist(out)
     show_image(out, "histogram equalised", False, cmap="gray")
-
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
 
     # NOTE: idea was that when initially attempting to identify contours, a lot of the lines were "connected" and so multiple
     # structures that I did not want to be detected as one contour, were being detected as such.
     # Thus, I thought if I dilate, I make the internal circumference of the cloverleaves independent of the rest of the structure.
-    out = cv2.dilate(out, kernel, iterations=3)
+    out = cv2.dilate(out, kernel, iterations=2)
     show_image(out, "dilated", False, cmap="gray")
 
     def is_cloverleaf(contour: MatLike) -> bool:
         perim = cv2.arcLength(contour, True)
         rad = perim / (2 + (3 / 2) * math.pi)
+
         (x, y), enc_rad = cv2.minEnclosingCircle(contour)
-        # cv2.circle(
-        #     out,
-        #     (int(x), int(y)),
-        #     radius=int(enc_rad),
-        #     color=(255, 255, 255),
-        #     thickness=2,
-        # )
+        # rad = 2 * enc_rad / (1 + math.sqrt(2))
+        is_cl_test = 200 <= enc_rad <= 250
+        if is_cl_test and False:
+            cv2.circle(
+                out,
+                (int(x), int(y)),
+                radius=int(enc_rad),
+                color=(255, 255, 255),
+                thickness=2,
+            )
 
         area = cv2.contourArea(contour)
 
-        tolerance = 0.17
+        tolerance = 0.15
 
         circle_area = (3 / 4) * math.pi * rad**2
         square_area = rad**2
         total_area = circle_area + square_area
 
         # TODO: remove later
-        is_cl_test = 200 <= enc_rad <= 250
         logging.info(
-            f"{is_cl_test}\t: {(area - total_area) / area}, {area}, {total_area}"
+            f"{is_cl_test}\t: {(area - total_area) / total_area}, {area}, {total_area}"
         )
 
         return abs((area - total_area) / total_area) < tolerance
@@ -71,10 +80,10 @@ def detect_cloverleaves(img: np.ndarray) -> np.ndarray:
 
     show_image(out, "contours filled", False, cmap="gray")
 
-    out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel, iterations=5)
+    out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel, iterations=1)
     show_image(out, "morphed - close", False, cmap="gray")
 
-    out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel, iterations=2)
+    out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel, iterations=1)
     show_image(out, "morphed - open", False, cmap="gray")
 
     return out
@@ -148,7 +157,7 @@ def mark_circles(img: np.ndarray) -> np.ndarray:
 
     contours, _ = cv2.findContours(processed, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     annotated_contours = img.copy()
-    cv2.drawContours(annotated_contours, contours, -1, (0, 255, 0), 3)
+    cv2.drawContours(annotated_contours, contours, -1, (255, 0, 0), 1)
     show_image(annotated_contours, "contour borders", save=True)
 
     circles = _find_circles(processed)
