@@ -9,7 +9,7 @@ def main() -> None:
     show_image(img, "initial image", save=False)
 
     annotated = preprocess_image(img)
-    show_image(annotated, "processed", False)
+    show_image(annotated, "processed", False, cmap="gray")
 
 
 if __name__ == "__main__":
