@@ -64,7 +64,9 @@ def detect_cloverleaves(img: np.ndarray) -> np.ndarray:
 
     contours, _ = cv2.findContours(out, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     for contour in contours:
-        colour = (0, 0, 0) if not is_cloverleaf(contour) else (255, 255, 255)
+        is_cl = is_cloverleaf(contour)
+
+        colour = (0, 0, 0) if not is_cl else (255, 255, 255)
         cv2.drawContours(out, [contour], 0, colour, -1)
 
     show_image(out, "contours filled", False, cmap="gray")
@@ -72,7 +74,7 @@ def detect_cloverleaves(img: np.ndarray) -> np.ndarray:
     out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel, iterations=5)
     show_image(out, "morphed - close", False, cmap="gray")
 
-    out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel, iterations=5)
+    out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel, iterations=2)
     show_image(out, "morphed - open", False, cmap="gray")
 
     return out
@@ -143,6 +145,11 @@ def mark_circles(img: np.ndarray) -> np.ndarray:
 
     logging.info("processing images and finding circles in the image ... ")
     processed = detect_cloverleaves(img)
+
+    contours, _ = cv2.findContours(processed, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    annotated_contours = img.copy()
+    cv2.drawContours(annotated_contours, contours, -1, (0, 255, 0), 3)
+    show_image(annotated_contours, "contour borders", save=True)
 
     circles = _find_circles(processed)
     out = _mark_circles(img, circles)
