@@ -95,13 +95,19 @@ def _mark_circles(img: np.ndarray, circles: None | np.ndarray) -> np.ndarray:
 
 # TODO: create a mark_radii option and use that to distinguish between 2.2.1 and 2.2.2
 def mark_circles(img: np.ndarray) -> np.ndarray:
-    logging.info("finding circles in the image ... ")
-    processed = preprocess_image(img)
-
     # NOTE: issue faced - too many circles -> asked Claude for recommendations
     # show some of the other params messed with as well. Took a while to reach this result.
     # also mention that asking for how to find circles is what led you to HoughCircles in the first place.
     # show the code in the docs as a reference.
+
+    logging.info("finding circles in the raw image ... ")
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    circles = _find_circles(gray)
+    annotated = _mark_circles(img, circles)
+    show_image(annotated, "raw circles", save=True, cmap="gray")
+
+    logging.info("processing images and finding circles in the image ... ")
+    processed = preprocess_image(img)
 
     circles = _find_circles(processed)
     return _mark_circles(img, circles)
