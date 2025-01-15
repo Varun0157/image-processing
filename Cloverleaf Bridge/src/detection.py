@@ -25,8 +25,12 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
     show_image(out, "histogram equalised", False, cmap="gray")
 
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+
+    out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel)
+    show_image(out, "morphed - open", False, cmap="gray")
+
     out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel)
-    show_image(out, "morphed", False, cmap="gray")
+    show_image(out, "morphed - close", False, cmap="gray")
 
     out = cv2.Canny(out, 30, 150)  # threshold1, threshold2
     show_image(out, "edge detected", False, cmap="gray")
