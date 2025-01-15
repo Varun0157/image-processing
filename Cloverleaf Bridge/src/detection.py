@@ -35,14 +35,13 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
     # out = cv2.Canny(out, 30, 150)  # threshold1, threshold2
     # show_image(out, "edge detected", False, cmap="gray")
 
-    out = cv2.dilate(out, kernel, iterations=5)
+    out = cv2.dilate(out, kernel, iterations=3)
     show_image(out, "dilated", False, cmap="gray")
 
-    contours, _hierarchy = cv2.findContours(out, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(out, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     for contour in contours:
         (x, y), rad = cv2.minEnclosingCircle(contour)
-        logging.info(f"contour at {x}, {y} with radius {rad}")
-        if rad < 150 or rad > 250:
+        if rad < 200 or rad > 250:
             cv2.drawContours(out, [contour], -1, (0, 0, 0), -1)
             continue
         logging.info(f"drawing countour at {x}, {y} with radius {rad}")
