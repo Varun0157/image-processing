@@ -26,14 +26,29 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
 
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
 
-    out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel)
-    show_image(out, "morphed - open", False, cmap="gray")
+    # out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel)
+    # show_image(out, "morphed - open", False, cmap="gray")
+    #
+    # out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel)
+    # show_image(out, "morphed - close", False, cmap="gray")
 
-    out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel)
-    show_image(out, "morphed - close", False, cmap="gray")
+    # out = cv2.Canny(out, 30, 150)  # threshold1, threshold2
+    # show_image(out, "edge detected", False, cmap="gray")
 
-    out = cv2.Canny(out, 30, 150)  # threshold1, threshold2
-    show_image(out, "edge detected", False, cmap="gray")
+    out = cv2.dilate(out, kernel, iterations=5)
+    show_image(out, "dilated", False, cmap="gray")
+
+    contours, _hierarchy = cv2.findContours(out, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    for contour in contours:
+        (x, y), rad = cv2.minEnclosingCircle(contour)
+        logging.info(f"contour at {x}, {y} with radius {rad}")
+        if rad < 150 or rad > 250:
+            cv2.drawContours(out, [contour], -1, (0, 0, 0), -1)
+            continue
+        logging.info(f"drawing countour at {x}, {y} with radius {rad}")
+        cv2.drawContours(out, [contour], 0, (255, 255, 255), -1)
+
+    show_image(out, "contours filled", False, cmap="gray")
 
     return out
 
@@ -100,11 +115,11 @@ def mark_circles(img: np.ndarray) -> np.ndarray:
     # also mention that asking for how to find circles is what led you to HoughCircles in the first place.
     # show the code in the docs as a reference.
 
-    logging.info("finding circles in the raw image ... ")
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    circles = _find_circles(gray)
-    annotated = _mark_circles(img, circles)
-    show_image(annotated, "raw circles", save=True, cmap="gray")
+    # logging.info("finding circles in the raw image ... ")
+    # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # circles = _find_circles(gray)
+    # annotated = _mark_circles(img, circles)
+    # show_image(annotated, "raw circles", save=True, cmap="gray")
 
     logging.info("processing images and finding circles in the image ... ")
     processed = preprocess_image(img)
