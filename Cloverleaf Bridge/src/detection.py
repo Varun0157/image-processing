@@ -24,23 +24,19 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
     out = cv2.equalizeHist(out)
     show_image(out, "histogram equalised", False, cmap="gray")
 
-    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
 
-    # out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel)
-    # show_image(out, "morphed - open", False, cmap="gray")
-    #
-    # out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel)
-    # show_image(out, "morphed - close", False, cmap="gray")
-
-    # out = cv2.Canny(out, 30, 150)  # threshold1, threshold2
-    # show_image(out, "edge detected", False, cmap="gray")
-
+    # NOTE: idea was that when initially attempting to identify contours, a lot of the lines were "connected" and so multiple
+    # structures that I did not want to be detected as one contour, were being detected as such.
+    # Thus, I thought if I dilate, I make the internal circumference of the cloverleaves independent of the rest of the structure.
     out = cv2.dilate(out, kernel, iterations=3)
     show_image(out, "dilated", False, cmap="gray")
 
     contours, _ = cv2.findContours(out, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     for contour in contours:
         (x, y), rad = cv2.minEnclosingCircle(contour)
+        # NOTE: manually logged contour shapes to debug and find the correct radii
+        # TODO: clean
         if rad < 200 or rad > 250:
             cv2.drawContours(out, [contour], -1, (0, 0, 0), -1)
             continue
@@ -49,62 +45,65 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
 
     show_image(out, "contours filled", False, cmap="gray")
 
+    out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel, iterations=5)
+    show_image(out, "morphed - close", False, cmap="gray")
+
     return out
 
 
-def _find_circles(img: np.ndarray) -> np.ndarray:
-    circles = cv2.HoughCircles(
-        img,
-        cv2.HOUGH_GRADIENT,
-        dp=1,
-        minDist=100,
-        param1=50,
-        param2=50,
-        minRadius=150,
-        maxRadius=300,
-    )
+# def _find_circles(img: np.ndarray) -> np.ndarray:
+#     circles = cv2.HoughCircles(
+#         img,
+#         cv2.HOUGH_GRADIENT,
+#         dp=1,
+#         minDist=100,
+#         param1=50,
+#         param2=50,
+#         minRadius=150,
+#         maxRadius=300,
+#     )
+#
+#     return circles
 
-    return circles
 
-
-def _mark_circles(img: np.ndarray, circles: None | np.ndarray) -> np.ndarray:
-    if circles is None:
-        logging.info("no circles found")
-        return img
-
-    annotated = img.copy()
-
-    OUTER_COLOUR, CENTER_COLOUR = (0, 255, 0), (255, 0, 0)
-    circles = np.round(circles).astype("int")
-    for i in circles[0, :]:
-        center, rad = (i[0], i[1]), i[2]
-        cv2.circle(annotated, center, rad, OUTER_COLOUR, 2)
-        cv2.circle(annotated, center, 2, CENTER_COLOUR, 3)
-
-        cv2.putText(
-            annotated,
-            f"r={rad}",
-            (center[0] + rad // 4, center[1] + rad // 4),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            1,
-            OUTER_COLOUR,
-            2,
-        )
-
-        center_text = f"({int(center[0])},{int(center[1])})"
-        cv2.putText(
-            annotated,
-            center_text,
-            (center[0] - rad // 4, center[1] - rad // 4),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            1,
-            CENTER_COLOUR,
-            2,
-        )
-
-        logging.info(f"\tcircle at {center_text} with radius {rad}")
-
-    return annotated
+# def _mark_circles(img: np.ndarray, circles: None | np.ndarray) -> np.ndarray:
+#     if circles is None:
+#         logging.info("no circles found")
+#         return img
+#
+#     annotated = img.copy()
+#
+#     OUTER_COLOUR, CENTER_COLOUR = (0, 255, 0), (255, 0, 0)
+#     circles = np.round(circles).astype("int")
+#     for i in circles[0, :]:
+#         center, rad = (i[0], i[1]), i[2]
+#         cv2.circle(annotated, center, rad, OUTER_COLOUR, 2)
+#         cv2.circle(annotated, center, 2, CENTER_COLOUR, 3)
+#
+#         cv2.putText(
+#             annotated,
+#             f"r={rad}",
+#             (center[0] + rad // 4, center[1] + rad // 4),
+#             cv2.FONT_HERSHEY_SIMPLEX,
+#             1,
+#             OUTER_COLOUR,
+#             2,
+#         )
+#
+#         center_text = f"({int(center[0])},{int(center[1])})"
+#         cv2.putText(
+#             annotated,
+#             center_text,
+#             (center[0] - rad // 4, center[1] - rad // 4),
+#             cv2.FONT_HERSHEY_SIMPLEX,
+#             1,
+#             CENTER_COLOUR,
+#             2,
+#         )
+#
+#         logging.info(f"\tcircle at {center_text} with radius {rad}")
+#
+#     return annotated
 
 
 # TODO: create a mark_radii option and use that to distinguish between 2.2.1 and 2.2.2
@@ -123,5 +122,4 @@ def mark_circles(img: np.ndarray) -> np.ndarray:
     logging.info("processing images and finding circles in the image ... ")
     processed = preprocess_image(img)
 
-    circles = _find_circles(processed)
-    return _mark_circles(img, circles)
+    return processed
