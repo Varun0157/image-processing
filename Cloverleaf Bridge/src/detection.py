@@ -34,17 +34,9 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
     return out
 
 
-# TODO: create a mark_radii option and use that to distinguish between 2.2.1 and 2.2.2
-def mark_circles(img: np.ndarray) -> np.ndarray:
-    logging.info("finding circles in the image ... ")
-    processed = preprocess_image(img)
-
-    # NOTE: issue faced - too many circles -> asked Claude for recommendations
-    # show some of the other params messed with as well. Took a while to reach this result.
-    # also mention that asking for how to find circles is what led you to HoughCircles in the first place.
-    # show the code in the docs as a reference.
+def _find_circles(img: np.ndarray) -> np.ndarray:
     circles = cv2.HoughCircles(
-        processed,
+        img,
         cv2.HOUGH_GRADIENT,
         dp=1,
         minDist=100,
@@ -54,6 +46,10 @@ def mark_circles(img: np.ndarray) -> np.ndarray:
         maxRadius=300,
     )
 
+    return circles
+
+
+def _mark_circles(img: np.ndarray, circles: None | np.ndarray) -> np.ndarray:
     if circles is None:
         logging.info("no circles found")
         return img
@@ -91,3 +87,17 @@ def mark_circles(img: np.ndarray) -> np.ndarray:
         logging.info(f"\tcircle at {center_text} with radius {rad}")
 
     return annotated
+
+
+# TODO: create a mark_radii option and use that to distinguish between 2.2.1 and 2.2.2
+def mark_circles(img: np.ndarray) -> np.ndarray:
+    logging.info("finding circles in the image ... ")
+    processed = preprocess_image(img)
+
+    # NOTE: issue faced - too many circles -> asked Claude for recommendations
+    # show some of the other params messed with as well. Took a while to reach this result.
+    # also mention that asking for how to find circles is what led you to HoughCircles in the first place.
+    # show the code in the docs as a reference.
+
+    circles = _find_circles(processed)
+    return _mark_circles(img, circles)
