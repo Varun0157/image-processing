@@ -1,14 +1,14 @@
 import logging
 
 from src.utils import load_historical_doc, show_image
-from src.detection import preprocess_image
+from src.detection import polygon_bound
 
 
 def main() -> None:
     img = load_historical_doc()
     show_image(img, "initial image", save=False)
 
-    annotated = preprocess_image(img)
+    annotated = polygon_bound(img)
     show_image(annotated, "processed", False, cmap="gray")
 
 
