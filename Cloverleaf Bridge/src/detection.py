@@ -41,27 +41,42 @@ def detect_cloverleaves(img: np.ndarray) -> np.ndarray:
     show_image(out, "dilated", False, cmap="gray")
 
     def is_cloverleaf(contour: MatLike) -> bool:
-        perim = cv2.arcLength(contour, True)
+        # NOTE: this idea consists of two parts:
+        # 1. evaluating the convex hull of a contour (rather than the contour itself) massively decreases false negatives, because the
+        # perimeter and area have to be close to that of a real cloverleaf. We extract radius from perimiter and compare area.
+        # 2. there are rare cases where a cloverleaf like structure may have a large notch in them, making them create false positives
+        # of cloverleaves where there may not be. Thus, we ensure low error between the area of the hull and the contour.
+
+        hull = cv2.convexHull(contour)
+
+        perim = cv2.arcLength(hull, True)
+        area = cv2.contourArea(hull)
         rad = perim / (2 + (3 / 2) * math.pi)
 
+        # prevention of false positives
+        if abs((area - cv2.contourArea(contour)) / area) > 0.2:
+            logging.info("seems like a potential false positive")
+            return False
+
         (x, y), enc_rad = cv2.minEnclosingCircle(contour)
-        # rad = 2 * enc_rad / (1 + math.sqrt(2))
+        rad = 2 * enc_rad / (1 + math.sqrt(2))
+        # NOTE: using the radius extracted from the min enclosing circle as above led
+        # to more accurate estimates of radius for the correct structures, but the incorrect ones too.
+        # using the perimeter led to the wrong ones being far more disparate.
         is_cl_test = 200 <= enc_rad <= 250
-        if is_cl_test and False:
-            cv2.circle(
-                out,
-                (int(x), int(y)),
-                radius=int(enc_rad),
-                color=(255, 255, 255),
-                thickness=2,
-            )
+        # if is_cl_test and False:
+        #     cv2.circle(
+        #         out,
+        #         (int(x), int(y)),
+        #         radius=int(enc_rad),
+        #         color=(255, 255, 255),
+        #         thickness=2,
+        #     )
 
-        area = cv2.contourArea(contour)
+        tolerance = 0.10
 
-        tolerance = 0.15
-
-        circle_area = (3 / 4) * math.pi * rad**2
-        square_area = rad**2
+        circle_area = (3 / 4) * math.pi * math.pow(rad, 2)
+        square_area = math.pow(rad, 2)
         total_area = circle_area + square_area
 
         # TODO: remove later
