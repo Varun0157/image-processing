@@ -1,16 +1,16 @@
 import os
 import math
-from typing import Optional
+from typing import Optional, Callable
 
 import torch.nn as nn
 import torch
 import numpy as np
 
 
-def get_model_path(res_dir: str, transform_name: Optional[str] = None) -> str:
+def get_model_path(res_dir: str, transform: Optional[Callable[...]] = None) -> str:
     model_components = ["model"]
-    if transform_name is not None:
-        model_components.append(transform_name)
+    if transform is not None:
+        model_components.append(transform.__name__)
     model_components.append(".pth")
     model_name = ".".join(model_components)
 

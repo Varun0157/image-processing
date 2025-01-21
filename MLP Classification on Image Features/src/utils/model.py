@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 from src.utils.loops import train, evaluate
 from src.utils.data import get_dataloader
-from src.utils.common import MLP, get_num_classes
+from src.utils.common import MLP, get_model_path, get_num_classes
 
 
 def train_model(
@@ -35,7 +35,7 @@ def train_model(
     criterion = torch.nn.CrossEntropyLoss(reduction="sum")
 
     best_val_loss = float("inf")
-    best_model_path = os.path.join(res_dir, "model.pth")
+    best_model_path = get_model_path(res_dir=res_dir, transform=transform)
 
     for epoch in range(epochs):
         print(f"\n*** EPOCH {epoch} ***")
@@ -113,7 +113,7 @@ def test_model(
     device: torch.device = torch.device("cuda"),
 ) -> None:
     model.load_state_dict(
-        torch.load(os.path.join(res_dir, "model.pth"), weights_only=True)
+        torch.load(get_model_path(res_dir, transform), weights_only=True)
     )
 
     args = {
