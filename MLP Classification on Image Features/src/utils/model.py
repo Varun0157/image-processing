@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 from src.utils.loops import train, evaluate
 from src.utils.data import get_dataloader
-from src.utils.common import MLP
+from src.utils.common import MLP, get_num_classes
 
 
 def train_model(
@@ -20,7 +20,7 @@ def train_model(
     epochs: int = 10,
     batch_size: int = 32,
     device: torch.device = torch.device("cuda"),
-    lr: float = 1e-3,
+    lr: float = 1e-4,
 ) -> None:
     args = {
         "transform": None,
@@ -52,7 +52,9 @@ def train_model(
 
 
 # NOTE: used Claude, copy prompt and res
-def visualise(preds: np.ndarray, labels: np.ndarray, num_classes: int = 10) -> None:
+def visualise(
+    preds: np.ndarray, labels: np.ndarray, num_classes: int = get_num_classes()
+) -> None:
     conf_matrix = confusion_matrix(labels, preds)
     # TODO: check the average= param
     precision, recall, f1, _ = precision_recall_fscore_support(

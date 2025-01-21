@@ -14,7 +14,7 @@ def main():
         model=model,
         res_dir="res",
         data_path="data",
-        epochs=10,
+        epochs=25,
         batch_size=batch_size,
         device=device,
     )
