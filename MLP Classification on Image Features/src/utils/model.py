@@ -1,4 +1,5 @@
 import os
+from typing import Callable, Optional
 
 import torch
 from torch.optim.adam import Adam
@@ -17,13 +18,14 @@ def train_model(
     model: MLP,
     res_dir: str,
     data_path: str,
+    transform: Optional[Callable[[np.ndarray], np.ndarray]] = None,
     epochs: int = 10,
     batch_size: int = 32,
     device: torch.device = torch.device("cuda"),
-    lr: float = 1e-4,
+    lr: float = 6.5e-5,
 ) -> None:
     args = {
-        "transform": None,
+        "transform": transform,
         "batch_size": batch_size,
     }
     train_loader = get_dataloader(os.path.join(data_path, "train.csv"), **args)
@@ -53,7 +55,9 @@ def train_model(
 
 # NOTE: used Claude, copy prompt and res
 def visualise(
-    preds: np.ndarray, labels: np.ndarray, num_classes: int = get_num_classes()
+    preds: np.ndarray,
+    labels: np.ndarray,
+    num_classes: int = get_num_classes(),
 ) -> None:
     conf_matrix = confusion_matrix(labels, preds)
     # TODO: check the average= param
@@ -104,6 +108,7 @@ def test_model(
     model: MLP,
     data_path: str,
     res_dir: str,
+    transform: Optional[Callable[[np.ndarray], np.ndarray]] = None,
     batch_size: int = 32,
     device: torch.device = torch.device("cuda"),
 ) -> None:
@@ -112,7 +117,7 @@ def test_model(
     )
 
     args = {
-        "transform": None,
+        "transform": transform,
         "batch_size": batch_size,
     }
     test_loader = get_dataloader(os.path.join(data_path, "test.csv"), **args)

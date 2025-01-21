@@ -1,8 +1,10 @@
 import os
+import math
 from typing import Optional
 
 import torch.nn as nn
 import torch
+import numpy as np
 
 
 def get_model_path(res_dir: str, transform_name: Optional[str] = None) -> str:
@@ -15,7 +17,7 @@ def get_model_path(res_dir: str, transform_name: Optional[str] = None) -> str:
     return os.path.join(res_dir, model_name)
 
 
-def get_input_size() -> int:
+def get_num_pixels() -> int:
     return 784
 
 
@@ -23,10 +25,25 @@ def get_num_classes() -> int:
     return 10
 
 
+def pixels_to_img(pixels: np.ndarray) -> np.ndarray:
+    num_pixels = get_num_pixels()
+
+    height = int(math.sqrt(num_pixels))
+    width = num_pixels // height
+
+    # TODO: consider creating some more robust check
+    assert height * width == num_pixels, "unable to reshape list to image"
+
+    pixels = np.round(pixels).astype(np.uint8)
+    img = pixels.reshape((height, width))
+
+    return img
+
+
 class MLP(nn.Module):
     def __init__(
         self,
-        input_size=get_input_size(),
+        input_size=get_num_pixels(),
         hidden_sizes=[512, 256, 128, 256],
         num_classes=get_num_classes(),
         dropout=0.1,
