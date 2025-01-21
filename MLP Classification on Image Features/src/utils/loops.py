@@ -1,10 +1,10 @@
-from typing import Tuple
+from typing import Tuple, List
 
 from tqdm import tqdm
 import torch
 from torch.utils.data.dataloader import DataLoader
 
-from src.utils.mlp import MLP
+from src.utils.common import MLP
 
 
 def train(
@@ -39,14 +39,14 @@ def evaluate(
     test_loader: DataLoader,
     criterion: torch.nn.Module,
     device: torch.device,
-) -> Tuple[float, float]:
+) -> Tuple[float, Tuple[List[float], List[float]]]:
     num_items: int = len(test_loader.dataset)  # type: ignore
     assert num_items > 0, "[evaluate] testing data must be present"
 
     model.eval()
 
     total_loss = 0
-    correct_preds = 0
+    preds, labels = [], []
 
     with torch.no_grad():
         for image, label in tqdm(test_loader, "evaluating model ... "):
@@ -58,9 +58,10 @@ def evaluate(
             total_loss += loss.item()
 
             pred = output.argmax(dim=1)
-            correct_preds += (pred == label).sum().item()
 
-    accuracy = correct_preds / num_items
+            preds.extend(pred.cpu().numpy())
+            labels.extend(label.cpu().numpy())
+
     avg_loss = total_loss / num_items
 
-    return avg_loss, accuracy
+    return avg_loss, (preds, labels)

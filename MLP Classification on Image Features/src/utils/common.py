@@ -1,5 +1,11 @@
+import os
+
+import torch.nn as nn
 import torch
-from torch import nn
+
+
+def get_model_path(res_dir: str) -> str:
+    return os.path.join(res_dir, "model.pth")
 
 
 class MLP(nn.Module):
