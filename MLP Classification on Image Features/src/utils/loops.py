@@ -1,7 +1,8 @@
+from tqdm import tqdm
 import torch
 from torch.utils.data.dataloader import DataLoader
 
-from utils.mlp import MLP
+from src.utils.mlp import MLP
 
 
 def train(
@@ -16,13 +17,11 @@ def train(
     model.train()
 
     total_loss = 0
-    for image, label in train_loader:
+    for image, label in tqdm(train_loader, "training model ... "):
         image, label = image.to(device), label.to(device)
         optimizer.zero_grad()
 
         output = model(image)
-        # print("label ", label)
-        # print("outpt ", output)
         loss = criterion(output, label)
 
         loss.backward()
@@ -46,7 +45,7 @@ def evaluate(
 
     total_loss = 0
     with torch.no_grad():
-        for image, label in test_loader:
+        for image, label in tqdm(test_loader, "evaluating model ... "):
             image, label = image.to(device), label.to(device)
 
             output = model(image)

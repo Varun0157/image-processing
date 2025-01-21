@@ -1,8 +1,8 @@
 import torch
 from torch.optim.adam import Adam
 
-from utils.mlp import MLP
-from utils.model import train_model
+from src.utils.mlp import MLP
+from src.utils.model import train_model, test_model
 
 
 def main():

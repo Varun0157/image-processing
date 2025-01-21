@@ -2,9 +2,9 @@ import os
 
 import torch
 
-from utils.loops import train, evaluate
-from utils.mlp import MLP
-from utils.data import get_dataloader
+from src.utils.loops import train, evaluate
+from src.utils.mlp import MLP
+from src.utils.data import get_dataloader
 
 
 def train_model(
@@ -28,15 +28,16 @@ def train_model(
     best_val_loss = float("inf")
     best_model_path = os.path.join(res_dir, "model.pth")
 
-    for _ in range(epochs):
+    for epoch in range(epochs):
+        print(f"\n*** EPOCH {epoch} ***")
         train_loss = train(model, train_loader, optim, criterion, device)
         val_loss = evaluate(model, valid_loader, criterion, device)
 
-        print(f"train_loss: {train_loss}, val_loss: {val_loss}")
-        print()
+        print(f"\ttrain loss: {train_loss:.4f}\tval loss: {val_loss:.4f}")
 
         if val_loss > best_val_loss:
             continue
 
+        print("\tsaving model")
         best_val_loss = val_loss
         torch.save(model.state_dict(), best_model_path)
