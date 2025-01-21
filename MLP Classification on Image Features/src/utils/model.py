@@ -12,13 +12,12 @@ def train_model(
     res_dir: str,
     data_path: str,
     criterion: torch.nn.NLLLoss,
-    optim: Any,  # type: ignore TODO: fix
+    optim,  # type: ignore TODO: fix
     epochs: int = 10,
     batch_size: int = 32,
-    device: torch.device = torch.device("cpu"),
+    device: torch.device = torch.device("cuda"),
     dropout_rate: float = 0.2,
     lr: float = 1e-3,
-    sent_len: int | None = None,
 ) -> None:
     train_loader = get_dataloader(os.path.join(data_path, "train.csv"))
     valid_loader = get_dataloader(os.path.join(data_path, "valid.csv"))
@@ -28,8 +27,11 @@ def train_model(
     best_model_path = os.path.join(res_dir, "model.pth")
 
     for _ in range(epochs):
-        _ = train(model, train_loader, optim, criterion, device)
+        train_loss = train(model, train_loader, optim, criterion, device)
         val_loss = evaluate(model, valid_loader, criterion, device)
+
+        print(f"train_loss: {train_loss}, val_loss: {val_loss}")
+        print()
 
         if val_loss > best_val_loss:
             continue

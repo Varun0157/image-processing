@@ -1,0 +1,26 @@
+import torch
+from torch.optim.adam import Adam
+
+from utils.mlp import MLP
+from utils.model import train_model
+
+
+def main():
+    model = MLP(device=torch.device("cuda"))
+    model = model.to(torch.device("cuda"))
+    train_model(
+        model,
+        "res",
+        "../data",
+        torch.nn.NLLLoss(reduction="sum"),
+        Adam,
+        10,
+        32,
+        torch.device("cuda"),
+        0.2,
+        1e-3,
+    )
+
+
+if __name__ == "__main__":
+    main()

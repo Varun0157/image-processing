@@ -44,13 +44,11 @@ def evaluate(
 
     total_loss = 0
     with torch.no_grad():
-        for context, target, _ in test_loader:
-            context, target = context.to(device), target.to(device)
+        for image, label in test_loader:
+            image, label = image.to(device), label.to(device)
 
-            output = model(context)
-            loss = criterion(output, target)
-            # NOTE: total loss of the batch, that's why we should use reduction="sum"
+            output = model(image)
+            loss = criterion(output, label)
 
             total_loss += loss.item()
-
     return total_loss / num_items
