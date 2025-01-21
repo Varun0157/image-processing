@@ -8,6 +8,7 @@ class MLP(nn.Module):
         input_size=784,
         hidden_sizes=[512, 256],
         num_classes=10,
+        dropout=0.1,
         device=torch.device("cpu"),
     ):
         super(MLP, self).__init__()
@@ -21,7 +22,7 @@ class MLP(nn.Module):
                 [
                     nn.Linear(current_size, hidden_size, device=device),
                     nn.ReLU(),
-                    nn.Dropout(0.1),
+                    nn.Dropout(dropout),
                 ]
             )
             current_size = hidden_size
