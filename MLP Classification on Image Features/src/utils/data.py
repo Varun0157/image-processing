@@ -27,8 +27,6 @@ class ImageDataset(Dataset):
     ):
         self.data = pd.read_csv(csv_file)
         self.transform = transform
-        if self.transform is not None:
-            print(f"performing {self.transform.__name__} on {csv_file}")
 
         # NOTE: assuming intensities from 0 to 255
         self.images = self.data.drop("label", axis=1).values.astype(np.uint8)
@@ -67,7 +65,7 @@ def visualise(
     for class_id in range(get_num_classes()):
         class_indices = np.where(labels == class_id)[0]
         if len(class_indices) == 0:
-            print(f"WARNING: no items of class id {class_id} found")
+            print(f"warning: no items of class id {class_id} found")
 
         class_samples[class_id] = np.random.choice(class_indices, 1)
 

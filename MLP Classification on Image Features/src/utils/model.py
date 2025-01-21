@@ -8,6 +8,7 @@ from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
+import wandb
 
 from src.utils.loops import train, evaluate
 from src.utils.data import get_dataloader
@@ -43,6 +44,7 @@ def train_model(
         val_loss, _ = evaluate(model, valid_loader, criterion, device)
 
         print(f"\ttrain loss: {train_loss:.4f}\tval loss: {val_loss:.4f}")
+        wandb.log({"train loss": train_loss, "val loss": val_loss})
 
         if val_loss > best_val_loss:
             continue
@@ -54,7 +56,7 @@ def train_model(
 
 
 # NOTE: used Claude, copy prompt and res
-def visualise(
+def visualise_perf(
     preds: np.ndarray,
     labels: np.ndarray,
     num_classes: int = get_num_classes(),
@@ -128,4 +130,4 @@ def test_model(
     print("\n*** TEST RESULTS ***")
     print("test loss: ", test_loss)
 
-    visualise(np.array(preds), np.array(labels))
+    visualise_perf(np.array(preds), np.array(labels))
