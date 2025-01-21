@@ -21,6 +21,8 @@ def train(
         optimizer.zero_grad()
 
         output = model(image)
+        # print("label ", label)
+        # print("outpt ", output)
         loss = criterion(output, label)
 
         loss.backward()

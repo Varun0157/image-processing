@@ -12,7 +12,7 @@ def main():
         model,
         "res",
         "../data",
-        torch.nn.NLLLoss(reduction="sum"),
+        torch.nn.CrossEntropyLoss(reduction="sum"),
         Adam,
         10,
         32,

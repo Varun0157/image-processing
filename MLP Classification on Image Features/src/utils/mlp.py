@@ -21,7 +21,6 @@ class MLP(nn.Module):
                 [
                     nn.Linear(current_size, hidden_size, device=device),
                     nn.ReLU(),
-                    nn.BatchNorm1d(hidden_size, device=device),
                     nn.Dropout(0.1),
                 ]
             )

@@ -11,7 +11,7 @@ def train_model(
     model: MLP,
     res_dir: str,
     data_path: str,
-    criterion: torch.nn.NLLLoss,
+    criterion: torch.nn.CrossEntropyLoss,
     optim,  # type: ignore TODO: fix
     epochs: int = 10,
     batch_size: int = 32,
@@ -19,7 +19,9 @@ def train_model(
     dropout_rate: float = 0.2,
     lr: float = 1e-3,
 ) -> None:
-    train_loader = get_dataloader(os.path.join(data_path, "train.csv"))
+    train_loader = get_dataloader(
+        os.path.join(data_path, "train.csv"), transform=None, batch_size=16
+    )
     valid_loader = get_dataloader(os.path.join(data_path, "valid.csv"))
     optim = optim(model.parameters(), lr=lr)
 
