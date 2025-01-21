@@ -15,8 +15,8 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     batch_size: int = 2048
     epochs: int = 100
-    lr: float = 1e-5
     transform: Optional[Callable[[np.ndarray], np.ndarray]] = edge_detection
+    lr: float = 3e-5
 
     run = wandb.init(
         project="basic mlp classification",
