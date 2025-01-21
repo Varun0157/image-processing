@@ -1,0 +1,16 @@
+{"time":"2025-01-22T01:04:20.080058483+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features/wandb/run-20250122_010419-evcd9yrz/logs/debug-core.log"}
+{"time":"2025-01-22T01:04:20.183728535+05:30","level":"INFO","msg":"created new stream","id":"evcd9yrz"}
+{"time":"2025-01-22T01:04:20.183810317+05:30","level":"INFO","msg":"stream: started","id":"evcd9yrz"}
+{"time":"2025-01-22T01:04:20.183968317+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"evcd9yrz"}
+{"time":"2025-01-22T01:04:20.184085566+05:30","level":"INFO","msg":"sender: started","stream_id":"evcd9yrz"}
+{"time":"2025-01-22T01:04:20.184288191+05:30","level":"INFO","msg":"handler: started","stream_id":"evcd9yrz"}
+{"time":"2025-01-22T01:04:20.769098035+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-22T01:05:53.049296108+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-22T01:05:53.050166635+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-22T01:05:54.010440287+05:30","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading output.log","runtime_seconds":0.056344494,"progress":"80.0KB/85.1KB"},{"desc":"uploading wandb-summary.json","runtime_seconds":0.056320568,"progress":"160B/160B"}],"total_operations":2}}
+{"time":"2025-01-22T01:05:54.875205723+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-22T01:05:56.315862581+05:30","level":"INFO","msg":"stream: closing","id":"evcd9yrz"}
+{"time":"2025-01-22T01:05:56.315907058+05:30","level":"INFO","msg":"handler: closed","stream_id":"evcd9yrz"}
+{"time":"2025-01-22T01:05:56.315930688+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":"evcd9yrz"}
+{"time":"2025-01-22T01:05:56.315990139+05:30","level":"INFO","msg":"sender: closed","stream_id":"evcd9yrz"}
+{"time":"2025-01-22T01:05:56.316064445+05:30","level":"INFO","msg":"stream: closed","id":"evcd9yrz"}
