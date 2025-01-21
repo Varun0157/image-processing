@@ -1,4 +1,3 @@
-import torch
 from torch import nn
 
 
@@ -15,7 +14,7 @@ class MLP(nn.Module):
                     nn.Linear(current_size, hidden_size),
                     nn.ReLU(),
                     nn.BatchNorm1d(hidden_size),
-                    nn.Dropout(0.2),
+                    nn.Dropout(0.1),
                 ]
             )
             current_size = hidden_size
