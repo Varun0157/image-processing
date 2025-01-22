@@ -1,0 +1,15 @@
+{"time":"2025-01-22T12:39:12.906328984+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features/wandb/run-20250122_123912-l1hapqpp/logs/debug-core.log"}
+{"time":"2025-01-22T12:39:13.008735789+05:30","level":"INFO","msg":"created new stream","id":"l1hapqpp"}
+{"time":"2025-01-22T12:39:13.008751738+05:30","level":"INFO","msg":"stream: started","id":"l1hapqpp"}
+{"time":"2025-01-22T12:39:13.008804124+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"l1hapqpp"}
+{"time":"2025-01-22T12:39:13.008842962+05:30","level":"INFO","msg":"sender: started","stream_id":"l1hapqpp"}
+{"time":"2025-01-22T12:39:13.008882818+05:30","level":"INFO","msg":"handler: started","stream_id":"l1hapqpp"}
+{"time":"2025-01-22T12:39:13.488010962+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-22T12:40:24.559483966+05:30","level":"INFO","msg":"stream: closing","id":"l1hapqpp"}
+{"time":"2025-01-22T12:40:24.559531807+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-22T12:40:24.560793869+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-22T12:40:25.982629192+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-22T12:40:26.597523564+05:30","level":"INFO","msg":"handler: closed","stream_id":"l1hapqpp"}
+{"time":"2025-01-22T12:40:26.597570151+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":"l1hapqpp"}
+{"time":"2025-01-22T12:40:26.597607751+05:30","level":"INFO","msg":"sender: closed","stream_id":"l1hapqpp"}
+{"time":"2025-01-22T12:40:26.597682968+05:30","level":"INFO","msg":"stream: closed","id":"l1hapqpp"}

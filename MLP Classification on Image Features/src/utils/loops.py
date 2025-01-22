@@ -19,7 +19,7 @@ def train(
     model.train()
 
     total_loss = 0
-    for image, label in tqdm(train_loader, "training model ... "):
+    for image, label in tqdm(train_loader, "training .... "):
         image, label = image.to(device), label.to(device)
         optimizer.zero_grad()
 
@@ -49,7 +49,7 @@ def evaluate(
     preds, labels = [], []
 
     with torch.no_grad():
-        for image, label in tqdm(test_loader, "evaluating model ... "):
+        for image, label in tqdm(test_loader, "evaluating .. "):
             image, label = image.to(device), label.to(device)
 
             output = model(image)

@@ -1,0 +1,73 @@
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 25.29it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  9.79it/s]
+	epoch 1 : train loss: 2.4328	val loss: 1.5899
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 26.05it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  9.59it/s]
+	epoch 2 : train loss: 1.5247	val loss: 1.0720
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 23.44it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  9.97it/s]
+	epoch 3 : train loss: 1.1684	val loss: 0.8651
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 24.57it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  8.67it/s]
+	epoch 4 : train loss: 0.9885	val loss: 0.7650
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 26.23it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00, 10.01it/s]
+	epoch 5 : train loss: 0.8877	val loss: 0.7023
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 25.50it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  9.78it/s]
+	epoch 6 : train loss: 0.8073	val loss: 0.6625
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 23.30it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  9.64it/s]
+	epoch 7 : train loss: 0.7560	val loss: 0.6306
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 26.40it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  9.51it/s]
+	epoch 8 : train loss: 0.7166	val loss: 0.6082
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 25.32it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  9.07it/s]
+	epoch 9 : train loss: 0.6865	val loss: 0.5909
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 24.34it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  9.65it/s]
+	epoch 10 : train loss: 0.6528	val loss: 0.5736
+	saving model
+training model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 27/27 [00:01<00:00, 22.67it/s]
+evaluating model ... : 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  8.95it/s]
+	epoch 11 : train loss: 0.6320	val loss: 0.5605
+	saving model
+training model ... :   0%|                                                                                                                           | 0/27 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/varun/miniconda3/envs/cv-as1/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/varun/miniconda3/envs/cv-as1/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features/src/q3.py", line 58, in <module>
+    main()
+  File "/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features/src/q3.py", line 34, in main
+    train_model(
+  File "/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features/src/utils/model.py", line 44, in train_model
+    train_loss = train(model, train_loader, optim, criterion, device)
+  File "/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features/src/utils/loops.py", line 22, in train
+    for image, label in tqdm(train_loader, "training model ... "):
+  File "/home/varun/miniconda3/envs/cv-as1/lib/python3.9/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/home/varun/miniconda3/envs/cv-as1/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "/home/varun/miniconda3/envs/cv-as1/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1327, in _next_data
+    idx, data = self._get_data()
+  File "/home/varun/miniconda3/envs/cv-as1/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1293, in _get_data
+    success, data = self._try_get_data()
+  File "/home/varun/miniconda3/envs/cv-as1/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1131, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/varun/miniconda3/envs/cv-as1/lib/python3.9/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+  File "/home/varun/miniconda3/envs/cv-as1/lib/python3.9/site-packages/torch/multiprocessing/reductions.py", line 495, in rebuild_storage_fd
+    def rebuild_storage_fd(cls, df, size):
+KeyboardInterrupt

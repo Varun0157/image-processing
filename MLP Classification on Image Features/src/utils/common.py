@@ -46,7 +46,7 @@ class MLP(nn.Module):
     def __init__(
         self,
         input_size=get_num_pixels(),
-        hidden_sizes=[512, 256, 128, 256],
+        hidden_sizes=[512, 256, 128, 64],
         num_classes=get_num_classes(),
         dropout=0.1,
         device=torch.device("cpu"),

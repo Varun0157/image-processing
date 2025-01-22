@@ -41,17 +41,18 @@ def train_model(
     best_model_path = get_model_path(res_dir=res_dir, transform=transform)
 
     for epoch in range(epochs):
-        print(f"\n*** EPOCH {epoch} ***")
         train_loss = train(model, train_loader, optim, criterion, device)
         val_loss, _ = evaluate(model, valid_loader, criterion, device)
 
-        print(f"\ttrain loss: {train_loss:.4f}\tval loss: {val_loss:.4f}")
+        print(
+            f"\tepoch {epoch + 1} loss -> train: {train_loss:.4f}\tval: {val_loss:.4f}"
+        )
         wandb.log({"train loss": train_loss, "val loss": val_loss})
 
         if val_loss > best_val_loss:
             continue
 
-        print("\tsaving model")
+        print("\t\tsaving model")
 
         best_val_loss = val_loss
         torch.save(model.state_dict(), best_model_path)
