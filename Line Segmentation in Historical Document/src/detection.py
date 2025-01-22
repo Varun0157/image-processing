@@ -47,4 +47,34 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
         cv2.rectangle(img[y_sep:, :], (x, y), (x + w, y + h), (0, 255, 0), 2)
     show_image(img, "bounding boxes", False)
 
+    # top half
+    top_processed = out.copy()
+
+    _, out[:y_sep, :] = cv2.threshold(
+        out[:y_sep, :], 0, L, cv2.THRESH_BINARY + cv2.THRESH_OTSU
+    )
+    show_image(out, "thresholded", False, cmap="gray")
+
+    out[:y_sep, :] = cv2.morphologyEx(out[:y_sep, :], cv2.MORPH_OPEN, kernel)
+    show_image(out, "morphed", False, cmap="gray")
+
+    contours, _ = cv2.findContours(
+        out[:y_sep, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
+    )
+
+    out[:y_sep, :] = cv2.bitwise_not(top_processed[:y_sep, :])
+    show_image(out, "inverted", False, cmap="gray")
+
+    for contour in contours:
+        cv2.drawContours(out[:y_sep, :], [contour], -1, (255, 255, 255), -1)
+    show_image(out, "filled", False, cmap="gray")
+
+    out[:y_sep, :] = cv2.GaussianBlur(out[:y_sep, :], (5, 5), 0)
+    show_image(out, "blurred", False, cmap="gray")
+
+    out[:y_sep, :] = cv2.adaptiveThreshold(
+        out[:y_sep, :], L, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2
+    )
+    show_image(out, "thresholded", False, cmap="gray")
+
     return out
