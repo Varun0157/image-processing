@@ -1,4 +1,5 @@
 import logging
+from typing import Tuple, List
 
 import cv2
 import numpy as np
@@ -6,20 +7,24 @@ import numpy as np
 from src.utils import show_image
 
 
-# TODO: consider creating an iterable of ops and applying them. Cleaner?
-# also, this is not final, just kinda works by accident.
-# consider processing the top part and bottom part separately
-def bounding_boxes(img: np.ndarray) -> np.ndarray:
+def text_segmentation(
+    image: np.ndarray,
+) -> Tuple[np.ndarray, np.ndarray, List[Tuple[int, int, int, int]]]:
+    bbs_img = image.copy()
+    ply_img = image.copy()
+
     logging.info("pre-processing image for further analysis ... ")
 
-    L = np.iinfo(img.dtype).max + 1
+    L = np.iinfo(bbs_img.dtype).max + 1
     y_sep = 80
 
-    out = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    final_text_contours: List[Tuple[int, int, int, int]] = []
+
+    out = cv2.cvtColor(bbs_img, cv2.COLOR_BGR2GRAY)
     show_image(out, "gray", False, cmap="gray")
 
     # bottom half
-    h, w, _ = img.shape
+    h, w, _ = bbs_img.shape
     bottom_area = (h - y_sep) * w
 
     out[y_sep:, :] = cv2.GaussianBlur(out[y_sep:, :], (5, 5), 0)  # kernel size, sigma
@@ -34,18 +39,21 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
     out[y_sep:, :] = cv2.morphologyEx(out[y_sep:, :], cv2.MORPH_OPEN, kernel)
     show_image(out, "morphed", False, cmap="gray")
 
-    contours, _ = cv2.findContours(
+    main_doc_text_contours, _ = cv2.findContours(
         out[y_sep:, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
-    for contour in contours:
+    for contour in main_doc_text_contours:
         x, y, w, h = cv2.boundingRect(contour)
         logging.info(f"bounding box: {x, y, w, h}")
 
         if not (50 <= h * w <= (bottom_area / 2)):
             continue
 
-        cv2.rectangle(img[y_sep:, :], (x, y), (x + w, y + h), (0, 255, 0), 2)
-    show_image(img, "bounding boxes", False)
+        cv2.rectangle(bbs_img[y_sep:, :], (x, y), (x + w, y + h), (0, 255, 0), 2)
+        cv2.drawContours(ply_img[y_sep:, :], [contour], -1, (0, 255, 0), 1)
+
+        final_text_contours.append((x, y + y_sep, w, h))
+    show_image(bbs_img, "bounding boxes", False)
 
     # top half
     top_area = y_sep * w
@@ -60,14 +68,14 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
     out[:y_sep, :] = cv2.morphologyEx(out[:y_sep, :], cv2.MORPH_OPEN, kernel)
     show_image(out, "morphed", False, cmap="gray")
 
-    contours, _ = cv2.findContours(
+    outside_seal_contours, _ = cv2.findContours(
         out[:y_sep, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
 
     out[:y_sep, :] = cv2.bitwise_not(top_processed[:y_sep, :])
     show_image(out, "inverted", False, cmap="gray")
 
-    for contour in contours:
+    for contour in outside_seal_contours:
         cv2.drawContours(out[:y_sep, :], [contour], -1, (255, 255, 255), -1)
     show_image(out, "filled", False, cmap="gray")
 
@@ -88,7 +96,8 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
         (x, y), rad = cv2.minEnclosingCircle(contour)
         x, y, rad = int(x), int(y), int(rad)
 
-        if not (abs(y - (w // 2)) < 5) or rad < 20:
+        # trying to mask away the seal circle
+        if not (40 < y < 50) or rad < 15:
             continue
 
         mask = np.zeros(out[:y_sep, :].shape[:2], dtype=np.uint8)
@@ -101,17 +110,58 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
     show_image(out, "without circles pls", False, cmap="gray")
 
     # finally, text segmentation
-    contours, _ = cv2.findContours(
+    seal_text_contours, _ = cv2.findContours(
         out[:y_sep, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
-    for contour in contours:
+    for contour in seal_text_contours:
         x, y, w, h = cv2.boundingRect(contour)
         logging.info(f"bounding box: {x, y, w, h}")
 
         if not (10 <= h * w <= top_area / 2):
             continue
 
-        cv2.rectangle(img[:y_sep, :], (x, y), (x + w, y + h), (0, 255, 0), 2)
-    show_image(img, "bounding boxes", False)
+        cv2.rectangle(bbs_img[:y_sep, :], (x, y), (x + w, y + h), (0, 255, 0), 2)
+        cv2.drawContours(ply_img[:y_sep, :], [contour], -1, (0, 255, 0), 1)
 
-    return out
+        final_text_contours.append((x, y, w, h))
+    show_image(bbs_img, "bounding boxes", False)
+    show_image(ply_img, "polygons", False)
+
+    return bbs_img, ply_img, final_text_contours
+
+
+def merge_adjacent_rects(
+    img: np.ndarray,
+    contours: List[Tuple[int, int, int, int]],
+) -> np.ndarray:
+    def get_top_left_y(a: Tuple[int, int, int, int]) -> int:
+        return a[1]
+
+    contours.sort(key=get_top_left_y)
+    final_bounds: List[Tuple[int, int, int, int]] = []
+    assert len(contours) > 0, "no contours found"
+
+    cur_x, cur_y, cur_w, cur_h = contours[0]
+
+    for contour in contours[1:]:
+        x, y, w, h = contour
+
+        cur_mid = cur_y + cur_h / 2
+        if y > cur_mid:
+            final_bounds.append((cur_x, cur_y, cur_w, cur_h))
+            cur_x, cur_y, cur_w, cur_h = x, y, w, h
+        else:
+            min_x = min(cur_x, x)
+            min_y = min(cur_y, y)
+            max_x = max(cur_x + cur_w, x + w)
+            max_y = max(cur_y + cur_h, y + h)
+
+            cur_x, cur_y = min_x, min_y
+            cur_h, cur_w = max_y - min_y, max_x - min_x
+    # NOTE: duplicates don't really matter here, so not thinking about it too mcuh
+    final_bounds.append((cur_x, cur_y, cur_w, cur_h))
+
+    for x, y, w, h in final_bounds:
+        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+    return img
