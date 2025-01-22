@@ -77,4 +77,33 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
     )
     show_image(out, "thresholded", False, cmap="gray")
 
+    contours, _ = cv2.findContours(
+        out[:y_sep, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
+    )
+    for contour in contours:
+        (x, y), rad = cv2.minEnclosingCircle(contour)
+        x, y, rad = int(x), int(y), int(rad)
+
+        if not (40 < y < 50) or rad < 20:
+            continue
+
+        mask = np.zeros(out[:y_sep, :].shape[:2], dtype=np.uint8)
+        cv2.drawContours(mask, [contour], 0, (255, 255, 255), -1)
+
+        white_background = np.full(out[:y_sep, :].shape, L - 1, dtype=np.uint8)
+
+        out[:y_sep, :] = np.where(mask[:, :], out[:y_sep, :], white_background)
+
+    show_image(out, "without circles pls", False, cmap="gray")
+
+    contours, _ = cv2.findContours(
+        out[:y_sep, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
+    )
+    for contour in contours:
+        x, y, w, h = cv2.boundingRect(contour)
+        logging.info(f"bounding box: {x, y, w, h}")
+
+        cv2.rectangle(img[:y_sep, :], (x, y), (x + w, y + h), (0, 255, 0), 2)
+    show_image(img, "bounding boxes", False)
+
     return out
