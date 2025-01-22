@@ -28,6 +28,8 @@ def train_model(
     args = {
         "transform": transform,
         "batch_size": batch_size,
+        "num_workers": 8,
+        "shuffle": True,
     }
     train_loader = get_dataloader(os.path.join(data_path, "train.csv"), **args)
     valid_loader = get_dataloader(os.path.join(data_path, "valid.csv"), **args)
@@ -121,6 +123,7 @@ def test_model(
     args = {
         "transform": transform,
         "batch_size": batch_size,
+        "num_workers": 8,
     }
     test_loader = get_dataloader(os.path.join(data_path, "test.csv"), **args)
 

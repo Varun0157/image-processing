@@ -6,17 +6,17 @@ import numpy as np
 
 from src.utils.model import train_model, test_model
 from src.utils.common import MLP
-from src.utils.data import edge_detection, visualise
+from src.utils.data import edge_detection, visualise, gaussian_blur
 
 import wandb
 
 
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    batch_size: int = 2048
+    batch_size: int = 16384
     epochs: int = 100
-    transform: Optional[Callable[[np.ndarray], np.ndarray]] = edge_detection
-    lr: float = 3e-5
+    transform: Optional[Callable[[np.ndarray], np.ndarray]] = gaussian_blur
+    lr: float = 3.5e-5
 
     run = wandb.init(
         project="basic mlp classification",
