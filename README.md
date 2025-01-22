@@ -9,5 +9,5 @@
 
 ## MLP Classification
 - [x] confirm if method 3 is fine 
-- [ ] cli args for different params, run on all params 
+- [x] cli args for different params, run on all params 
 

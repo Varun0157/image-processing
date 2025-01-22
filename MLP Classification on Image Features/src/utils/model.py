@@ -7,15 +7,20 @@ import torch
 import numpy as np
 
 
-def get_model_path(
-    res_dir: str, transform: Optional[Callable[[np.ndarray], np.ndarray]] = None
+def get_model_name(
+    transform: Optional[Callable[[np.ndarray], np.ndarray]] = None,
 ) -> str:
     model_components = ["model"]
     if transform is not None:
         model_components.append(transform.__name__)
-    model_components.append("pth")
-    model_name = ".".join(model_components)
 
+    return "-".join(model_components)
+
+
+def get_model_path(
+    res_dir: str, transform: Optional[Callable[[np.ndarray], np.ndarray]] = None
+) -> str:
+    model_name = get_model_name(transform) + ".pth"
     return os.path.join(res_dir, model_name)
 
 

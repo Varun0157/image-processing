@@ -13,7 +13,7 @@ from tqdm import tqdm
 import wandb
 
 from src.utils.data import get_dataloader
-from src.utils.model import MLP, get_model_path, get_num_classes
+from src.utils.model import MLP, get_model_path, get_num_classes, get_model_name
 
 
 def _train(
@@ -89,7 +89,7 @@ def train_model(
     args = {
         "transform": transform,
         "batch_size": batch_size,
-        "num_workers": 8,
+        "num_workers": 12,
         "shuffle": True,
     }
     train_loader = get_dataloader(os.path.join(data_path, "train.csv"), **args)
@@ -134,7 +134,7 @@ def test_model(
     args = {
         "transform": transform,
         "batch_size": batch_size,
-        "num_workers": 8,
+        "num_workers": 12,
     }
     test_loader = get_dataloader(os.path.join(data_path, "test.csv"), **args)
 
@@ -152,6 +152,7 @@ def visualise_perf(
     preds: np.ndarray,
     labels: np.ndarray,
     num_classes: int = get_num_classes(),
+    transform: Optional[Callable[[np.ndarray], np.ndarray]] = None,
 ) -> None:
     conf_matrix = confusion_matrix(labels, preds)
     # TODO: check the average= param
@@ -195,4 +196,4 @@ def visualise_perf(
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
 
-    plt.show()
+    plt.savefig(os.path.join("res", get_model_name(transform) + ".png"))

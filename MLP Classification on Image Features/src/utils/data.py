@@ -1,3 +1,4 @@
+import os
 from typing import cast
 from typing import Optional, Callable
 
@@ -8,8 +9,26 @@ import pandas as pd
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
+from skimage.feature import hog
+from skimage import exposure
 
-from src.utils.model import get_num_classes, pixels_to_img
+from src.utils.model import get_model_name, get_num_classes, pixels_to_img
+
+
+def hog_features(pixels: np.ndarray) -> np.ndarray:
+    image = pixels_to_img(pixels)
+
+    _, hog_image = hog(
+        image,
+        orientations=9,
+        pixels_per_cell=(7, 7),
+        cells_per_block=(2, 2),
+        visualize=True,
+    )
+    hog_image_rescaled = exposure.rescale_intensity(hog_image)
+
+    out = hog_image_rescaled
+    return out.flatten()
 
 
 def edge_detection(pixels: np.ndarray) -> np.ndarray:
@@ -102,4 +121,4 @@ def visualise(
         axes[row_idx, 1].axis("off")
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig(os.path.join("res", get_model_name(transform) + "-samples.png"))
