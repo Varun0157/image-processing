@@ -1,0 +1,40 @@
+{
+  "os":  "Linux-6.8.0-51-generic-x86_64-with-glibc2.35",
+  "python":  "CPython 3.9.21",
+  "startedAt":  "2025-01-22T06:41:07.130983Z",
+  "program":  "-m src.q3",
+  "git":  {
+    "remote":  "git@github.com:computer-vision-spring-25/assignment-1-Varun0157.git",
+    "commit":  "a321da128e62dceba4734006790fdb6bea7a7896"
+  },
+  "email":  "varun.edachali@gmail.com",
+  "root":  "/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features",
+  "host":  "varun-Inspiron-16-7620-2-in-1",
+  "executable":  "/home/varun/miniconda3/envs/cv-as1/bin/python",
+  "cpu_count":  12,
+  "cpu_count_logical":  16,
+  "gpu":  "NVIDIA GeForce MX550",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "104299724800",
+      "used":  "66675822592"
+    }
+  },
+  "memory":  {
+    "total":  "16437714944"
+  },
+  "cpu":  {
+    "count":  12,
+    "countLogical":  16
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce MX550",
+      "memoryTotal":  "2147483648",
+      "cudaCores":  1024,
+      "architecture":  "Turing"
+    }
+  ],
+  "cudaVersion":  "12.7"
+}

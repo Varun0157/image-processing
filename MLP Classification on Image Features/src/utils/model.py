@@ -57,6 +57,34 @@ def train_model(
         torch.save(model.state_dict(), best_model_path)
 
 
+def test_model(
+    model: MLP,
+    data_path: str,
+    res_dir: str,
+    transform: Optional[Callable[[np.ndarray], np.ndarray]] = None,
+    batch_size: int = 32,
+    device: torch.device = torch.device("cuda"),
+) -> None:
+    model.load_state_dict(
+        torch.load(get_model_path(res_dir, transform), weights_only=True)
+    )
+
+    args = {
+        "transform": transform,
+        "batch_size": batch_size,
+        "num_workers": 8,
+    }
+    test_loader = get_dataloader(os.path.join(data_path, "test.csv"), **args)
+
+    criterion = torch.nn.CrossEntropyLoss(reduction="sum")
+
+    test_loss, (preds, labels) = evaluate(model, test_loader, criterion, device)
+    print("\n*** TEST RESULTS ***")
+    print("test loss: ", test_loss)
+
+    visualise_perf(np.array(preds), np.array(labels))
+
+
 # NOTE: used Claude, copy prompt and res
 def visualise_perf(
     preds: np.ndarray,
@@ -106,31 +134,3 @@ def visualise_perf(
     plt.ylabel("Actual")
 
     plt.show()
-
-
-def test_model(
-    model: MLP,
-    data_path: str,
-    res_dir: str,
-    transform: Optional[Callable[[np.ndarray], np.ndarray]] = None,
-    batch_size: int = 32,
-    device: torch.device = torch.device("cuda"),
-) -> None:
-    model.load_state_dict(
-        torch.load(get_model_path(res_dir, transform), weights_only=True)
-    )
-
-    args = {
-        "transform": transform,
-        "batch_size": batch_size,
-        "num_workers": 8,
-    }
-    test_loader = get_dataloader(os.path.join(data_path, "test.csv"), **args)
-
-    criterion = torch.nn.CrossEntropyLoss(reduction="sum")
-
-    test_loss, (preds, labels) = evaluate(model, test_loader, criterion, device)
-    print("\n*** TEST RESULTS ***")
-    print("test loss: ", test_loss)
-
-    visualise_perf(np.array(preds), np.array(labels))

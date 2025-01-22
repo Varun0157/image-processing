@@ -19,9 +19,10 @@ def edge_detection(pixels: np.ndarray) -> np.ndarray:
     return out.flatten()
 
 
-def gaussian_blur(pixels: np.ndarray) -> np.ndarray:
+def blurred_equalised(pixels: np.ndarray) -> np.ndarray:
     image = pixels_to_img(pixels)
     out = cv2.GaussianBlur(image, (3, 3), 0)
+    out = cv2.equalizeHist(out)
 
     return out.flatten()
 
