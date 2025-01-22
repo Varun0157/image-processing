@@ -92,7 +92,9 @@ def visualise(
         raw_img = pixels_to_img(raw_img.numpy())
         axes[row_idx, 0].imshow(raw_img, cmap="gray")
         axes[row_idx, 0].axis("off")
-        axes[row_idx, 0].set_ylabel(f"class {class_id}")
+
+        # TODO: why isn't the label showing?
+        axes[row_idx, 0].set_ylabel(f"{class_id}", rotation=0, ha="right", va="center")
 
         transformed_img, _ = transformed_dataset[idx]
         transformed_img = pixels_to_img(transformed_img.numpy())
