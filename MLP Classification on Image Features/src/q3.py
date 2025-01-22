@@ -3,12 +3,11 @@ from typing import Optional, Callable
 
 import torch
 import numpy as np
+import wandb
 
 from src.utils.loops import train_model, test_model
-from src.utils.common import MLP
+from src.utils.model import MLP
 from src.utils.data import edge_detection, visualise, blurred_equalised
-
-import wandb
 
 
 def main():

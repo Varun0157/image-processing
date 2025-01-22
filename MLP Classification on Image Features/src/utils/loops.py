@@ -13,7 +13,7 @@ from tqdm import tqdm
 import wandb
 
 from src.utils.data import get_dataloader
-from src.utils.common import MLP, get_model_path, get_num_classes
+from src.utils.model import MLP, get_model_path, get_num_classes
 
 
 def _train(

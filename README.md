@@ -5,9 +5,9 @@
 
 ## Line Segmentation
 - [ ] refactor functions to align with assignment doc naming
-- [ ] merge lines with close y values to make it on a line by line basis 
+- [x] merge lines with close y values to make it on a line by line basis 
 
 ## MLP Classification
-- [ ] confirm if method 3 is fine 
+- [x] confirm if method 3 is fine 
 - [ ] cli args for different params, run on all params 
 

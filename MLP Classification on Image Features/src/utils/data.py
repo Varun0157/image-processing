@@ -9,7 +9,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
-from src.utils.common import get_num_classes, pixels_to_img
+from src.utils.model import get_num_classes, pixels_to_img
 
 
 def edge_detection(pixels: np.ndarray) -> np.ndarray:
