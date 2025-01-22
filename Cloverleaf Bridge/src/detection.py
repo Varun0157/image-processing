@@ -1,5 +1,6 @@
 import logging
 import math
+from typing import Optional
 
 import cv2
 from cv2.typing import MatLike
@@ -95,6 +96,8 @@ def detect_cloverleaves(img: np.ndarray) -> np.ndarray:
 
     show_image(out, "contours filled", False, cmap="gray")
 
+    # TODO: seems un-necessary, check
+    #
     out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel, iterations=1)
     show_image(out, "morphed - close", False, cmap="gray")
 
@@ -104,7 +107,7 @@ def detect_cloverleaves(img: np.ndarray) -> np.ndarray:
     return out
 
 
-def _find_circles(img: np.ndarray) -> np.ndarray | None:
+def _find_circles(img: np.ndarray) -> Optional[np.ndarray]:
     circles = cv2.HoughCircles(
         img,
         cv2.HOUGH_GRADIENT,
@@ -119,7 +122,7 @@ def _find_circles(img: np.ndarray) -> np.ndarray | None:
     return circles
 
 
-def _mark_circles(img: np.ndarray, circles: np.ndarray | None) -> np.ndarray:
+def _mark_circles(img: np.ndarray, circles: Optional[np.ndarray]) -> np.ndarray:
     if circles is None:
         logging.info("no circles found")
         return img
