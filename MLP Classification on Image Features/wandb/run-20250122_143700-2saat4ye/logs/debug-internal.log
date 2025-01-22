@@ -1,0 +1,16 @@
+{"time":"2025-01-22T14:37:00.939081495+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features/wandb/run-20250122_143700-2saat4ye/logs/debug-core.log"}
+{"time":"2025-01-22T14:37:01.045618475+05:30","level":"INFO","msg":"created new stream","id":"2saat4ye"}
+{"time":"2025-01-22T14:37:01.045736165+05:30","level":"INFO","msg":"stream: started","id":"2saat4ye"}
+{"time":"2025-01-22T14:37:01.045846726+05:30","level":"INFO","msg":"handler: started","stream_id":"2saat4ye"}
+{"time":"2025-01-22T14:37:01.046365855+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"2saat4ye"}
+{"time":"2025-01-22T14:37:01.04689784+05:30","level":"INFO","msg":"sender: started","stream_id":"2saat4ye"}
+{"time":"2025-01-22T14:37:01.617919782+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-22T14:39:05.323378714+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-22T14:39:05.324366297+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-22T14:39:06.324385053+05:30","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading output.log","runtime_seconds":0.309333211,"progress":"120.6KB/120.6KB"},{"desc":"uploading wandb-summary.json","runtime_seconds":0.309317015,"progress":"162B/162B"}],"total_operations":2}}
+{"time":"2025-01-22T14:39:06.887746594+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-22T14:39:08.516643957+05:30","level":"INFO","msg":"stream: closing","id":"2saat4ye"}
+{"time":"2025-01-22T14:39:08.51672588+05:30","level":"INFO","msg":"handler: closed","stream_id":"2saat4ye"}
+{"time":"2025-01-22T14:39:08.516751133+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":"2saat4ye"}
+{"time":"2025-01-22T14:39:08.516828816+05:30","level":"INFO","msg":"sender: closed","stream_id":"2saat4ye"}
+{"time":"2025-01-22T14:39:08.516918826+05:30","level":"INFO","msg":"stream: closed","id":"2saat4ye"}

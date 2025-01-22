@@ -44,40 +44,8 @@ def prepare_data(
     # print(f"train labels: {train_df.label.unique()}")
     # print(f"valid labels: {valid_df.label.unique()}")
 
-    return train_df, valid_df, test_data
-
-
-def visualize_images(
-    data_csv, output_dir=os.path.join("data", "vis"), num_samples=5, random_state=42
-):
-    vis_dir = Path(output_dir)
-    # TODO: parents=True?
-    vis_dir.mkdir(parents=True, exist_ok=True)
-    data = pd.read_csv(data_csv)
-
-    np.random.seed(random_state)
-
-    sample_indices = np.random.choice(len(data), num_samples, replace=False)
-
-    for idx in sample_indices:
-        image_data = data.iloc[idx, 1:].values  # Skip label column
-        label = data.iloc[idx, 0]
-
-        image = image_data.reshape(28, 28)
-
-        plt.figure(figsize=(4, 4))
-        plt.imshow(image, cmap="gray")
-        plt.title(f"Label: {label}")
-        plt.axis("off")
-
-        plt.savefig(
-            vis_dir / f"sample_{idx}_label_{label}.png", bbox_inches="tight", dpi=100
-        )
-        plt.close()
-
-    print(f"saved {num_samples} sample images to {output_dir}")
+    return train_df, valid_df, test_df
 
 
 if __name__ == "__main__":
     train_df, valid_df, test_df = prepare_data()
-    visualize_images("data/train.csv", num_samples=10)
