@@ -48,8 +48,10 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
     show_image(img, "bounding boxes", False)
 
     # top half
+    top_area = y_sep * w
     top_processed = out.copy()
 
+    # mask the part outside the seal so we can make it white on binarisation
     _, out[:y_sep, :] = cv2.threshold(
         out[:y_sep, :], 0, L, cv2.THRESH_BINARY + cv2.THRESH_OTSU
     )
@@ -69,6 +71,7 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
         cv2.drawContours(out[:y_sep, :], [contour], -1, (255, 255, 255), -1)
     show_image(out, "filled", False, cmap="gray")
 
+    # remove noise within seal
     out[:y_sep, :] = cv2.GaussianBlur(out[:y_sep, :], (5, 5), 0)
     show_image(out, "blurred", False, cmap="gray")
 
@@ -77,6 +80,7 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
     )
     show_image(out, "thresholded", False, cmap="gray")
 
+    # mask seal circle itself
     contours, _ = cv2.findContours(
         out[:y_sep, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
@@ -84,7 +88,7 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
         (x, y), rad = cv2.minEnclosingCircle(contour)
         x, y, rad = int(x), int(y), int(rad)
 
-        if not (40 < y < 50) or rad < 20:
+        if not (abs(y - (w // 2)) < 5) or rad < 20:
             continue
 
         mask = np.zeros(out[:y_sep, :].shape[:2], dtype=np.uint8)
@@ -96,12 +100,16 @@ def bounding_boxes(img: np.ndarray) -> np.ndarray:
 
     show_image(out, "without circles pls", False, cmap="gray")
 
+    # finally, text segmentation
     contours, _ = cv2.findContours(
         out[:y_sep, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
     for contour in contours:
         x, y, w, h = cv2.boundingRect(contour)
         logging.info(f"bounding box: {x, y, w, h}")
+
+        if not (10 <= h * w <= top_area / 2):
+            continue
 
         cv2.rectangle(img[:y_sep, :], (x, y), (x + w, y + h), (0, 255, 0), 2)
     show_image(img, "bounding boxes", False)
