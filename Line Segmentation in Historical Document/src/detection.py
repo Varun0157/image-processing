@@ -20,6 +20,7 @@ def _mark_main_doc_contours(
     main_doc_text_contours, _ = cv2.findContours(
         processed[y_sep:, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
+
     for contour in main_doc_text_contours:
         x, y, w, h = cv2.boundingRect(contour)
         logging.info(f"bounding box: {x, y, w, h}")
@@ -48,6 +49,7 @@ def _mark_seal_text_contours(
     seal_text_contours, _ = cv2.findContours(
         processed[:y_sep, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
+
     for contour in seal_text_contours:
         x, y, w, h = cv2.boundingRect(contour)
         logging.info(f"bounding box: {x, y, w, h}")
@@ -66,6 +68,7 @@ def _mark_seal_text_contours(
 def _merge_adjacent_rects(
     image: np.ndarray,
     rects: List[Tuple[int, int, int, int]],
+    name: str,
 ) -> np.ndarray:
     img = image.copy()
 
@@ -94,10 +97,16 @@ def _merge_adjacent_rects(
             cur_x, cur_y = min_x, min_y
             cur_h, cur_w = max_y - min_y, max_x - min_x
     # NOTE: duplicates don't really matter here, so not thinking about it too mcuh
+    # but, a duplicate push is possible here. A simple fix would be to make it a set,
+    # or explicitly check for presence.
     final_bounds.append((cur_x, cur_y, cur_w, cur_h))
 
-    for x, y, w, h in final_bounds:
+    for i, (x, y, w, h) in enumerate(final_bounds):
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+        raw_img = image.copy()
+        cv2.rectangle(raw_img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+        show_image(raw_img, f"{name}_{i+1}", save=True)
 
     return img
 
@@ -110,7 +119,7 @@ def detect_lines_with_bboxes(
     bbs_img, _, rects = _mark_main_doc_contours(y_sep, processed, img)
     show_image(bbs_img, "text-wise bounding boxes - document", save=True)
 
-    line_bbs_img = _merge_adjacent_rects(img, rects)
+    line_bbs_img = _merge_adjacent_rects(img, rects, "line")
     show_image(line_bbs_img, "line-wise bounding boxes - document", save=True)
 
 
@@ -120,7 +129,7 @@ def segment_lines_in_seal(
     bbs_img, _, rects = _mark_seal_text_contours(y_sep, processed, img)
     show_image(bbs_img, "text-wise bounding boxes - seal", save=True)
 
-    line_bbs_img = _merge_adjacent_rects(img, rects)
+    line_bbs_img = _merge_adjacent_rects(img, rects, "circle_line")
     show_image(line_bbs_img, "line-wise bounding boxes - seal", save=True)
 
 
