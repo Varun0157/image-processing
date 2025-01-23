@@ -4,7 +4,7 @@
 - [x] refactor functions to align with assignment doc naming 
 
 ## Line Segmentation
-- [ ] refactor functions to align with assignment doc naming
+- [x] refactor functions to align with assignment doc naming
 - [x] merge lines with close y values to make it on a line by line basis 
 
 ## MLP Classification
