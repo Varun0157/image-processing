@@ -21,7 +21,6 @@ def load_image(path: str, log_info: bool = True) -> np.ndarray:
     img = cv2.imread(path)
 
     if log_info:
-        # TODO: clarify what else is meant by 'distribution'
         logging.info(f"loaded image from {path}")
         logging.info(f"\tshape: {img.shape}")
         logging.info(f"\tdtype: {img.dtype}")
@@ -32,7 +31,7 @@ def load_image(path: str, log_info: bool = True) -> np.ndarray:
     return img
 
 
-def load_historical_doc() -> np.ndarray:
+def load_document_image() -> np.ndarray:
     IMAGE_PATH = os.path.join("data", "historical-doc.png")
     img = load_image(IMAGE_PATH, log_info=True)
 

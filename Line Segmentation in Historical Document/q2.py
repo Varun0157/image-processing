@@ -1,23 +1,29 @@
 import logging
 
-from src.utils import load_historical_doc, show_image
-from src.detection import text_segmentation, merge_adjacent_rects
+from src.utils import load_document_image, show_image
+from src.detection import (
+    detect_lines_with_bboxes,
+    preprocess_image,
+    segment_lines_in_seal,
+    detect_lines_with_polygons,
+)
 from src.histograms import get_histograms, visualise_histograms
 
 
 def main() -> None:
-    img = load_historical_doc()
+    img = load_document_image()
     show_image(img, "initial image", save=False)
 
     custom_hist, opencv_hist = get_histograms(img)
     visualise_histograms(custom_hist, opencv_hist)
 
-    bbs_img, ply_img, text_bounds = text_segmentation(img)
-    show_image(bbs_img, "bounding boxes", True)
-    show_image(ply_img, "polygons", True)
+    y_sep = 80
+    processed = preprocess_image(img, y_sep)
+    show_image(processed, "final processed", save=True, cmap="gray")
 
-    line_wise_bbs_img = merge_adjacent_rects(img, text_bounds)
-    show_image(line_wise_bbs_img, "line-wise bounding boxes", True)
+    detect_lines_with_bboxes(processed, img, y_sep)
+    segment_lines_in_seal(processed, img, y_sep)
+    detect_lines_with_polygons(processed, img, y_sep)
 
 
 if __name__ == "__main__":
