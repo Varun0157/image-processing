@@ -1,0 +1,449 @@
+RAW
+device: cuda
+	epoch 1 loss -> train: 3.7299	val: 1.7361
+		saving model
+	epoch 2 loss -> train: 2.1052	val: 1.3637
+		saving model
+	epoch 3 loss -> train: 1.6506	val: 1.0689
+		saving model
+	epoch 4 loss -> train: 1.3647	val: 0.8699
+		saving model
+	epoch 5 loss -> train: 1.1687	val: 0.7824
+		saving model
+	epoch 6 loss -> train: 1.0173	val: 0.7172
+		saving model
+	epoch 7 loss -> train: 0.9223	val: 0.6680
+		saving model
+	epoch 8 loss -> train: 0.8490	val: 0.6306
+		saving model
+	epoch 9 loss -> train: 0.7924	val: 0.6074
+		saving model
+	epoch 10 loss -> train: 0.7497	val: 0.5800
+		saving model
+	epoch 11 loss -> train: 0.7124	val: 0.5594
+		saving model
+	epoch 12 loss -> train: 0.6781	val: 0.5383
+		saving model
+	epoch 13 loss -> train: 0.6454	val: 0.5220
+		saving model
+	epoch 14 loss -> train: 0.6226	val: 0.5021
+		saving model
+	epoch 15 loss -> train: 0.6009	val: 0.4896
+		saving model
+	epoch 16 loss -> train: 0.5814	val: 0.4724
+		saving model
+	epoch 17 loss -> train: 0.5644	val: 0.4674
+		saving model
+	epoch 18 loss -> train: 0.5499	val: 0.4556
+		saving model
+	epoch 19 loss -> train: 0.5348	val: 0.4571
+	epoch 20 loss -> train: 0.5274	val: 0.4396
+		saving model
+	epoch 21 loss -> train: 0.5123	val: 0.4343
+		saving model
+	epoch 22 loss -> train: 0.5017	val: 0.4269
+		saving model
+	epoch 23 loss -> train: 0.4930	val: 0.4249
+		saving model
+	epoch 24 loss -> train: 0.4864	val: 0.4195
+		saving model
+	epoch 25 loss -> train: 0.4768	val: 0.4173
+		saving model
+	epoch 26 loss -> train: 0.4710	val: 0.4121
+		saving model
+	epoch 27 loss -> train: 0.4652	val: 0.4151
+	epoch 28 loss -> train: 0.4626	val: 0.4066
+		saving model
+	epoch 29 loss -> train: 0.4578	val: 0.4106
+	epoch 30 loss -> train: 0.4508	val: 0.3872
+		saving model
+	epoch 31 loss -> train: 0.4380	val: 0.3822
+		saving model
+	epoch 32 loss -> train: 0.4319	val: 0.3718
+		saving model
+	epoch 33 loss -> train: 0.4198	val: 0.3739
+	epoch 34 loss -> train: 0.4153	val: 0.3666
+		saving model
+	epoch 35 loss -> train: 0.4099	val: 0.3717
+	epoch 36 loss -> train: 0.4027	val: 0.3629
+		saving model
+	epoch 37 loss -> train: 0.3963	val: 0.3638
+	epoch 38 loss -> train: 0.3926	val: 0.3633
+	epoch 39 loss -> train: 0.3875	val: 0.3556
+		saving model
+	epoch 40 loss -> train: 0.3818	val: 0.3553
+		saving model
+	epoch 41 loss -> train: 0.3768	val: 0.3485
+		saving model
+	epoch 42 loss -> train: 0.3737	val: 0.3517
+	epoch 43 loss -> train: 0.3675	val: 0.3451
+		saving model
+	epoch 44 loss -> train: 0.3677	val: 0.3498
+	epoch 45 loss -> train: 0.3602	val: 0.3402
+		saving model
+	epoch 46 loss -> train: 0.3598	val: 0.3496
+	epoch 47 loss -> train: 0.3584	val: 0.3448
+	epoch 48 loss -> train: 0.3533	val: 0.3487
+	epoch 49 loss -> train: 0.3490	val: 0.3418
+	epoch 50 loss -> train: 0.3467	val: 0.3442
+	epoch 51 loss -> train: 0.3451	val: 0.3449
+	epoch 52 loss -> train: 0.3426	val: 0.3455
+	epoch 53 loss -> train: 0.3355	val: 0.3438
+	epoch 54 loss -> train: 0.3357	val: 0.3491
+	epoch 55 loss -> train: 0.3376	val: 0.3439
+	epoch 56 loss -> train: 0.3334	val: 0.3508
+	epoch 57 loss -> train: 0.3328	val: 0.3436
+	epoch 58 loss -> train: 0.3348	val: 0.3472
+	epoch 59 loss -> train: 0.3279	val: 0.3380
+		saving model
+	epoch 60 loss -> train: 0.3256	val: 0.3402
+	epoch 61 loss -> train: 0.3254	val: 0.3342
+		saving model
+	epoch 62 loss -> train: 0.3267	val: 0.3307
+		saving model
+	epoch 63 loss -> train: 0.3122	val: 0.3254
+		saving model
+	epoch 64 loss -> train: 0.3068	val: 0.3244
+		saving model
+	epoch 65 loss -> train: 0.3051	val: 0.3272
+	epoch 66 loss -> train: 0.3044	val: 0.3254
+	epoch 67 loss -> train: 0.3012	val: 0.3268
+	epoch 68 loss -> train: 0.2978	val: 0.3233
+		saving model
+	epoch 69 loss -> train: 0.2951	val: 0.3190
+		saving model
+	epoch 70 loss -> train: 0.2904	val: 0.3231
+	epoch 71 loss -> train: 0.2881	val: 0.3213
+	epoch 72 loss -> train: 0.2868	val: 0.3247
+	epoch 73 loss -> train: 0.2840	val: 0.3204
+	epoch 74 loss -> train: 0.2812	val: 0.3291
+	epoch 75 loss -> train: 0.2851	val: 0.3189
+		saving model
+	epoch 76 loss -> train: 0.2832	val: 0.3286
+	epoch 77 loss -> train: 0.2787	val: 0.3254
+	epoch 78 loss -> train: 0.2782	val: 0.3366
+	epoch 79 loss -> train: 0.2749	val: 0.3346
+	epoch 80 loss -> train: 0.2808	val: 0.3398
+	epoch 81 loss -> train: 0.2770	val: 0.3298
+	epoch 82 loss -> train: 0.2771	val: 0.3364
+	epoch 83 loss -> train: 0.2742	val: 0.3240
+	epoch 84 loss -> train: 0.2777	val: 0.3233
+	epoch 85 loss -> train: 0.2685	val: 0.3143
+		saving model
+	epoch 86 loss -> train: 0.2648	val: 0.3261
+	epoch 87 loss -> train: 0.2660	val: 0.3238
+	epoch 88 loss -> train: 0.2650	val: 0.3306
+	epoch 89 loss -> train: 0.2623	val: 0.3163
+	epoch 90 loss -> train: 0.2557	val: 0.3243
+	epoch 91 loss -> train: 0.2545	val: 0.3199
+	epoch 92 loss -> train: 0.2519	val: 0.3253
+	epoch 93 loss -> train: 0.2504	val: 0.3221
+	epoch 94 loss -> train: 0.2549	val: 0.3241
+	epoch 95 loss -> train: 0.2490	val: 0.3202
+	epoch 96 loss -> train: 0.2529	val: 0.3337
+	epoch 97 loss -> train: 0.2486	val: 0.3218
+	epoch 98 loss -> train: 0.2463	val: 0.3255
+	epoch 99 loss -> train: 0.2433	val: 0.3184
+	epoch 100 loss -> train: 0.2412	val: 0.3285
+
+*** TEST RESULTS ***
+test loss:  0.312683447265625
+
+blurred and equalised
+device: cuda
+	epoch 1 loss -> train: 3.2179	val: 1.6077
+		saving model
+	epoch 2 loss -> train: 1.7780	val: 1.1648
+		saving model
+	epoch 3 loss -> train: 1.4336	val: 0.9478
+		saving model
+	epoch 4 loss -> train: 1.2262	val: 0.8089
+		saving model
+	epoch 5 loss -> train: 1.0753	val: 0.7307
+		saving model
+	epoch 6 loss -> train: 0.9582	val: 0.6820
+		saving model
+	epoch 7 loss -> train: 0.8785	val: 0.6432
+		saving model
+	epoch 8 loss -> train: 0.8126	val: 0.6194
+		saving model
+	epoch 9 loss -> train: 0.7584	val: 0.5831
+		saving model
+	epoch 10 loss -> train: 0.7201	val: 0.5659
+		saving model
+	epoch 11 loss -> train: 0.6890	val: 0.5427
+		saving model
+	epoch 12 loss -> train: 0.6605	val: 0.5263
+		saving model
+	epoch 13 loss -> train: 0.6303	val: 0.5070
+		saving model
+	epoch 14 loss -> train: 0.6132	val: 0.4899
+		saving model
+	epoch 15 loss -> train: 0.5880	val: 0.4776
+		saving model
+	epoch 16 loss -> train: 0.5728	val: 0.4648
+		saving model
+	epoch 17 loss -> train: 0.5555	val: 0.4574
+		saving model
+	epoch 18 loss -> train: 0.5419	val: 0.4439
+		saving model
+	epoch 19 loss -> train: 0.5268	val: 0.4359
+		saving model
+	epoch 20 loss -> train: 0.5136	val: 0.4293
+		saving model
+	epoch 21 loss -> train: 0.5062	val: 0.4231
+		saving model
+	epoch 22 loss -> train: 0.4953	val: 0.4167
+		saving model
+	epoch 23 loss -> train: 0.4869	val: 0.4165
+		saving model
+	epoch 24 loss -> train: 0.4793	val: 0.4097
+		saving model
+	epoch 25 loss -> train: 0.4699	val: 0.4005
+		saving model
+	epoch 26 loss -> train: 0.4643	val: 0.3992
+		saving model
+	epoch 27 loss -> train: 0.4568	val: 0.3945
+		saving model
+	epoch 28 loss -> train: 0.4513	val: 0.3952
+	epoch 29 loss -> train: 0.4435	val: 0.3954
+	epoch 30 loss -> train: 0.4434	val: 0.3949
+	epoch 31 loss -> train: 0.4347	val: 0.3893
+		saving model
+	epoch 32 loss -> train: 0.4333	val: 0.3986
+	epoch 33 loss -> train: 0.4333	val: 0.3887
+		saving model
+	epoch 34 loss -> train: 0.4321	val: 0.3888
+	epoch 35 loss -> train: 0.4280	val: 0.3788
+		saving model
+	epoch 36 loss -> train: 0.4253	val: 0.3708
+		saving model
+	epoch 37 loss -> train: 0.4138	val: 0.3658
+		saving model
+	epoch 38 loss -> train: 0.4056	val: 0.3559
+		saving model
+	epoch 39 loss -> train: 0.4036	val: 0.3563
+	epoch 40 loss -> train: 0.3926	val: 0.3539
+		saving model
+	epoch 41 loss -> train: 0.3932	val: 0.3571
+	epoch 42 loss -> train: 0.3869	val: 0.3539
+	epoch 43 loss -> train: 0.3850	val: 0.3468
+		saving model
+	epoch 44 loss -> train: 0.3800	val: 0.3429
+		saving model
+	epoch 45 loss -> train: 0.3753	val: 0.3446
+	epoch 46 loss -> train: 0.3711	val: 0.3408
+		saving model
+	epoch 47 loss -> train: 0.3685	val: 0.3430
+	epoch 48 loss -> train: 0.3664	val: 0.3425
+	epoch 49 loss -> train: 0.3650	val: 0.3413
+	epoch 50 loss -> train: 0.3634	val: 0.3460
+	epoch 51 loss -> train: 0.3628	val: 0.3417
+	epoch 52 loss -> train: 0.3580	val: 0.3332
+		saving model
+	epoch 53 loss -> train: 0.3551	val: 0.3338
+	epoch 54 loss -> train: 0.3519	val: 0.3356
+	epoch 55 loss -> train: 0.3525	val: 0.3376
+	epoch 56 loss -> train: 0.3473	val: 0.3377
+	epoch 57 loss -> train: 0.3452	val: 0.3345
+	epoch 58 loss -> train: 0.3418	val: 0.3367
+	epoch 59 loss -> train: 0.3410	val: 0.3316
+		saving model
+	epoch 60 loss -> train: 0.3384	val: 0.3337
+	epoch 61 loss -> train: 0.3388	val: 0.3281
+		saving model
+	epoch 62 loss -> train: 0.3313	val: 0.3318
+	epoch 63 loss -> train: 0.3316	val: 0.3346
+	epoch 64 loss -> train: 0.3314	val: 0.3327
+	epoch 65 loss -> train: 0.3309	val: 0.3369
+	epoch 66 loss -> train: 0.3369	val: 0.3293
+	epoch 67 loss -> train: 0.3266	val: 0.3309
+	epoch 68 loss -> train: 0.3268	val: 0.3307
+	epoch 69 loss -> train: 0.3235	val: 0.3285
+	epoch 70 loss -> train: 0.3212	val: 0.3330
+	epoch 71 loss -> train: 0.3203	val: 0.3311
+	epoch 72 loss -> train: 0.3205	val: 0.3255
+		saving model
+	epoch 73 loss -> train: 0.3165	val: 0.3231
+		saving model
+	epoch 74 loss -> train: 0.3128	val: 0.3207
+		saving model
+	epoch 75 loss -> train: 0.3108	val: 0.3221
+	epoch 76 loss -> train: 0.3092	val: 0.3201
+		saving model
+	epoch 77 loss -> train: 0.3072	val: 0.3262
+	epoch 78 loss -> train: 0.3033	val: 0.3294
+	epoch 79 loss -> train: 0.3082	val: 0.3228
+	epoch 80 loss -> train: 0.3014	val: 0.3178
+		saving model
+	epoch 81 loss -> train: 0.2986	val: 0.3129
+		saving model
+	epoch 82 loss -> train: 0.2897	val: 0.3110
+		saving model
+	epoch 83 loss -> train: 0.2912	val: 0.3228
+	epoch 84 loss -> train: 0.2954	val: 0.3125
+	epoch 85 loss -> train: 0.2931	val: 0.3175
+	epoch 86 loss -> train: 0.2886	val: 0.3154
+	epoch 87 loss -> train: 0.2855	val: 0.3205
+	epoch 88 loss -> train: 0.2863	val: 0.3104
+		saving model
+	epoch 89 loss -> train: 0.2788	val: 0.3191
+	epoch 90 loss -> train: 0.2787	val: 0.3107
+	epoch 91 loss -> train: 0.2799	val: 0.3152
+	epoch 92 loss -> train: 0.2766	val: 0.3127
+	epoch 93 loss -> train: 0.2743	val: 0.3120
+	epoch 94 loss -> train: 0.2759	val: 0.3176
+	epoch 95 loss -> train: 0.2804	val: 0.3280
+	epoch 96 loss -> train: 0.2817	val: 0.3270
+	epoch 97 loss -> train: 0.2750	val: 0.3233
+	epoch 98 loss -> train: 0.2724	val: 0.3154
+	epoch 99 loss -> train: 0.2690	val: 0.3157
+	epoch 100 loss -> train: 0.2692	val: 0.3169
+
+*** TEST RESULTS ***
+test loss:  0.288590673828125
+
+edge detected
+device: cuda
+	epoch 1 loss -> train: 3.2607	val: 2.1528
+		saving model
+	epoch 2 loss -> train: 2.2264	val: 1.7876
+		saving model
+	epoch 3 loss -> train: 1.8715	val: 1.4153
+		saving model
+	epoch 4 loss -> train: 1.5740	val: 1.1416
+		saving model
+	epoch 5 loss -> train: 1.3490	val: 0.9681
+		saving model
+	epoch 6 loss -> train: 1.2145	val: 0.8700
+		saving model
+	epoch 7 loss -> train: 1.0920	val: 0.7946
+		saving model
+	epoch 8 loss -> train: 0.9934	val: 0.7430
+		saving model
+	epoch 9 loss -> train: 0.9120	val: 0.6890
+		saving model
+	epoch 10 loss -> train: 0.8493	val: 0.6497
+		saving model
+	epoch 11 loss -> train: 0.7950	val: 0.6210
+		saving model
+	epoch 12 loss -> train: 0.7562	val: 0.5973
+		saving model
+	epoch 13 loss -> train: 0.7220	val: 0.5764
+		saving model
+	epoch 14 loss -> train: 0.6896	val: 0.5576
+		saving model
+	epoch 15 loss -> train: 0.6665	val: 0.5422
+		saving model
+	epoch 16 loss -> train: 0.6412	val: 0.5291
+		saving model
+	epoch 17 loss -> train: 0.6216	val: 0.5182
+		saving model
+	epoch 18 loss -> train: 0.6053	val: 0.5074
+		saving model
+	epoch 19 loss -> train: 0.5853	val: 0.5010
+		saving model
+	epoch 20 loss -> train: 0.5714	val: 0.4894
+		saving model
+	epoch 21 loss -> train: 0.5549	val: 0.4871
+		saving model
+	epoch 22 loss -> train: 0.5444	val: 0.4770
+		saving model
+	epoch 23 loss -> train: 0.5322	val: 0.4740
+		saving model
+	epoch 24 loss -> train: 0.5227	val: 0.4644
+		saving model
+	epoch 25 loss -> train: 0.5028	val: 0.4634
+		saving model
+	epoch 26 loss -> train: 0.4944	val: 0.4564
+		saving model
+	epoch 27 loss -> train: 0.4858	val: 0.4530
+		saving model
+	epoch 28 loss -> train: 0.4716	val: 0.4458
+		saving model
+	epoch 29 loss -> train: 0.4643	val: 0.4444
+		saving model
+	epoch 30 loss -> train: 0.4539	val: 0.4399
+		saving model
+	epoch 31 loss -> train: 0.4441	val: 0.4396
+		saving model
+	epoch 32 loss -> train: 0.4389	val: 0.4340
+		saving model
+	epoch 33 loss -> train: 0.4297	val: 0.4336
+		saving model
+	epoch 34 loss -> train: 0.4195	val: 0.4292
+		saving model
+	epoch 35 loss -> train: 0.4113	val: 0.4306
+	epoch 36 loss -> train: 0.4003	val: 0.4251
+		saving model
+	epoch 37 loss -> train: 0.3970	val: 0.4303
+	epoch 38 loss -> train: 0.3841	val: 0.4260
+	epoch 39 loss -> train: 0.3782	val: 0.4307
+	epoch 40 loss -> train: 0.3740	val: 0.4241
+		saving model
+	epoch 41 loss -> train: 0.3658	val: 0.4306
+	epoch 42 loss -> train: 0.3575	val: 0.4248
+	epoch 43 loss -> train: 0.3523	val: 0.4323
+	epoch 44 loss -> train: 0.3478	val: 0.4226
+		saving model
+	epoch 45 loss -> train: 0.3398	val: 0.4301
+	epoch 46 loss -> train: 0.3327	val: 0.4254
+	epoch 47 loss -> train: 0.3288	val: 0.4307
+	epoch 48 loss -> train: 0.3212	val: 0.4191
+		saving model
+	epoch 49 loss -> train: 0.3145	val: 0.4248
+	epoch 50 loss -> train: 0.3063	val: 0.4181
+		saving model
+	epoch 51 loss -> train: 0.2977	val: 0.4233
+	epoch 52 loss -> train: 0.2876	val: 0.4218
+	epoch 53 loss -> train: 0.2818	val: 0.4278
+	epoch 54 loss -> train: 0.2761	val: 0.4264
+	epoch 55 loss -> train: 0.2694	val: 0.4273
+	epoch 56 loss -> train: 0.2632	val: 0.4263
+	epoch 57 loss -> train: 0.2568	val: 0.4318
+	epoch 58 loss -> train: 0.2482	val: 0.4393
+	epoch 59 loss -> train: 0.2448	val: 0.4369
+	epoch 60 loss -> train: 0.2376	val: 0.4412
+	epoch 61 loss -> train: 0.2329	val: 0.4474
+	epoch 62 loss -> train: 0.2292	val: 0.4572
+	epoch 63 loss -> train: 0.2269	val: 0.4638
+	epoch 64 loss -> train: 0.2224	val: 0.4667
+	epoch 65 loss -> train: 0.2146	val: 0.4723
+	epoch 66 loss -> train: 0.2112	val: 0.4881
+	epoch 67 loss -> train: 0.2113	val: 0.4893
+	epoch 68 loss -> train: 0.2062	val: 0.4889
+	epoch 69 loss -> train: 0.2039	val: 0.4917
+	epoch 70 loss -> train: 0.2016	val: 0.4855
+	epoch 71 loss -> train: 0.1885	val: 0.4838
+	epoch 72 loss -> train: 0.1826	val: 0.4887
+	epoch 73 loss -> train: 0.1742	val: 0.4892
+	epoch 74 loss -> train: 0.1666	val: 0.4938
+	epoch 75 loss -> train: 0.1598	val: 0.4977
+	epoch 76 loss -> train: 0.1521	val: 0.5085
+	epoch 77 loss -> train: 0.1514	val: 0.5031
+	epoch 78 loss -> train: 0.1445	val: 0.5120
+	epoch 79 loss -> train: 0.1407	val: 0.5226
+	epoch 80 loss -> train: 0.1341	val: 0.5293
+	epoch 81 loss -> train: 0.1297	val: 0.5378
+	epoch 82 loss -> train: 0.1280	val: 0.5381
+	epoch 83 loss -> train: 0.1224	val: 0.5451
+	epoch 84 loss -> train: 0.1209	val: 0.5559
+	epoch 85 loss -> train: 0.1188	val: 0.5610
+	epoch 86 loss -> train: 0.1129	val: 0.5663
+	epoch 87 loss -> train: 0.1093	val: 0.5807
+	epoch 88 loss -> train: 0.1049	val: 0.5864
+	epoch 89 loss -> train: 0.1059	val: 0.5900
+	epoch 90 loss -> train: 0.0987	val: 0.5921
+	epoch 91 loss -> train: 0.0964	val: 0.6230
+	epoch 92 loss -> train: 0.0958	val: 0.6038
+	epoch 93 loss -> train: 0.0913	val: 0.6191
+	epoch 94 loss -> train: 0.0894	val: 0.6263
+	epoch 95 loss -> train: 0.0866	val: 0.6410
+	epoch 96 loss -> train: 0.0874	val: 0.6360
+	epoch 97 loss -> train: 0.0832	val: 0.6376
+	epoch 98 loss -> train: 0.0823	val: 0.6329
+	epoch 99 loss -> train: 0.0825	val: 0.6604
+	epoch 100 loss -> train: 0.0789	val: 0.6501
+
+*** TEST RESULTS ***
+test loss:  0.41869580078125

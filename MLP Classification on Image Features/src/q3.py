@@ -36,6 +36,7 @@ def main(
         config={
             "lr": lr,
             "epochs": epochs,
+            "dropout": dropout,
         },
         name=transform.__name__ if transform is not None else "raw",
     )
