@@ -144,7 +144,7 @@ def test_model(
     print("\n*** TEST RESULTS ***")
     print("test loss: ", test_loss)
 
-    visualise_perf(np.array(preds), np.array(labels))
+    visualise_perf(np.array(preds), np.array(labels), transform=transform)
 
 
 # NOTE: used Claude, copy prompt and res
