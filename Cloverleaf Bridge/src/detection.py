@@ -9,7 +9,6 @@ import numpy as np
 from src.utils import show_image
 
 
-# TODO: consider creating an iterable of ops and applying them. Cleaner?
 def preprocess_image(img: np.ndarray) -> np.ndarray:
     logging.info("pre-processing image for further analysis ... ")
 
@@ -32,9 +31,6 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
     out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel, iterations=1)
     show_image(out, "processing - morphed - open", True, cmap="gray")
 
-    # NOTE: idea was that when initially attempting to identify contours, a lot of the lines were "connected" and so multiple
-    # structures that I did not want to be detected as one contour, were being detected as such.
-    # Thus, I thought if I dilate, I make the internal circumference of the cloverleaves independent of the rest of the structure.
     out = cv2.dilate(out, kernel, iterations=2)
     show_image(out, "processing - dilated", True, cmap="gray")
 
@@ -43,12 +39,6 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
 
 def detect_cloverleaves(out: np.ndarray) -> np.ndarray:
     def is_cloverleaf(contour: MatLike) -> bool:
-        # NOTE: this idea consists of two parts:
-        # 1. evaluating the convex hull of a contour (rather than the contour itself) massively decreases false negatives, because the
-        # perimeter and area have to be close to that of a real cloverleaf. We extract radius from perimiter and compare area.
-        # 2. there are rare cases where a cloverleaf like structure may have a large notch in them, making them create false positives
-        # of cloverleaves where there may not be. Thus, we ensure low error between the area of the hull and the contour.
-
         hull = cv2.convexHull(contour)
 
         perim = cv2.arcLength(hull, True)

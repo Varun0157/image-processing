@@ -21,7 +21,6 @@ def load_image(path: str, log_info: bool = True) -> np.ndarray:
     img = cv2.imread(path)
 
     if log_info:
-        # TODO: clarify what else is meant by 'distribution'
         logging.info(f"loaded image from {path}")
         logging.info(f"\tshape: {img.shape}")
         logging.info(f"\tdtype: {img.dtype}")

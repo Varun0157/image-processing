@@ -147,7 +147,6 @@ def test_model(
     visualise_perf(np.array(preds), np.array(labels), transform=transform)
 
 
-# NOTE: used Claude, copy prompt and res
 def visualise_perf(
     preds: np.ndarray,
     labels: np.ndarray,
@@ -155,7 +154,7 @@ def visualise_perf(
     transform: Optional[Callable[[np.ndarray], np.ndarray]] = None,
 ) -> None:
     conf_matrix = confusion_matrix(labels, preds)
-    # TODO: check the average= param
+    # NOTE: check the average= param discussion in ./ref/perf
     precision, recall, f1, _ = precision_recall_fscore_support(
         labels, preds, average="weighted"
     )

@@ -16,7 +16,6 @@ from src.detection import (
 )
 
 
-# TODO: create a mark_radii option and use that to distinguish between 2.2.1 and 2.2.2
 def calculate_radii(
     image: np.ndarray, processed: np.ndarray
 ) -> Tuple[np.ndarray, Optional[np.ndarray]]:

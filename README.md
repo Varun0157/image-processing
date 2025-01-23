@@ -1,13 +1,20 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/gNQhfL5m)
-# High Level Todos
-## Cloverleaf Bridge 
-- [x] refactor functions to align with assignment doc naming 
+to run cloverleaf bridge, cd in and:
+```sh 
+python -m q1 
+```
 
-## Line Segmentation
-- [x] refactor functions to align with assignment doc naming
-- [x] merge lines with close y values to make it on a line by line basis 
+to run line segmentation
+```sh
+python -m q2 
+```
 
-## MLP Classification
-- [x] confirm if method 3 is fine 
-- [x] cli args for different params, run on all params 
+to run mlp classification:
+```sh 
+python -m src.q3 --transform <transform> 
+```
 
+before that process the data using:
+```sh 
+python scripts/process.py 
+```
