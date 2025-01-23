@@ -25,7 +25,7 @@ def _mark_main_doc_contours(
         x, y, w, h = cv2.boundingRect(contour)
         logging.info(f"bounding box: {x, y, w, h}")
 
-        if not (50 <= h * w <= (bottom_area / 2)):
+        if not (100 <= h * w <= (bottom_area / 2)):
             continue
 
         cv2.rectangle(bbs_img[y_sep:, :], (x, y), (x + w, y + h), (0, 255, 0), 2)
@@ -148,20 +148,20 @@ def preprocess_image(image: np.ndarray, y_sep: int = 80) -> np.ndarray:
     L = np.iinfo(image.dtype).max + 1
 
     out = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    show_image(out, "full - gray", False, cmap="gray")
+    show_image(out, "full - gray", True, cmap="gray")
 
     # bottom half
     out[y_sep:, :] = cv2.GaussianBlur(out[y_sep:, :], (5, 5), 0)  # kernel size, sigma
-    show_image(out, "bottom - blurred", False, cmap="gray")
+    show_image(out, "bottom - blurred", True, cmap="gray")
 
     _, out[y_sep:, :] = cv2.threshold(
         out[y_sep:, :], 0, L, cv2.THRESH_BINARY + cv2.THRESH_OTSU
     )
-    show_image(out, "bottom - thresholded", False, cmap="gray")
+    show_image(out, "bottom - thresholded", True, cmap="gray")
 
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
-    out[y_sep:, :] = cv2.morphologyEx(out[y_sep:, :], cv2.MORPH_OPEN, kernel)
-    show_image(out, "bottom - morphed", False, cmap="gray")
+    # out[y_sep:, :] = cv2.morphologyEx(out[y_sep:, :], cv2.MORPH_OPEN, kernel)
+    # show_image(out, "bottom - morphed", True, cmap="gray")
 
     # top half
     top_processed = out.copy()
@@ -170,30 +170,30 @@ def preprocess_image(image: np.ndarray, y_sep: int = 80) -> np.ndarray:
     _, out[:y_sep, :] = cv2.threshold(
         out[:y_sep, :], 0, L, cv2.THRESH_BINARY + cv2.THRESH_OTSU
     )
-    show_image(out, "top - thresholded", False, cmap="gray")
+    show_image(out, "top - thresholded", True, cmap="gray")
 
     out[:y_sep, :] = cv2.morphologyEx(out[:y_sep, :], cv2.MORPH_OPEN, kernel)
-    show_image(out, "top - morphed", False, cmap="gray")
+    show_image(out, "top - morphed", True, cmap="gray")
 
     outside_seal_contours, _ = cv2.findContours(
         out[:y_sep, :], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
 
     out[:y_sep, :] = cv2.bitwise_not(top_processed[:y_sep, :])
-    show_image(out, "top - inverted", False, cmap="gray")
+    show_image(out, "top - inverted", True, cmap="gray")
 
     for contour in outside_seal_contours:
         cv2.drawContours(out[:y_sep, :], [contour], -1, (255, 255, 255), -1)
-    show_image(out, "top - outside seal filled", False, cmap="gray")
+    show_image(out, "top - outside seal filled", True, cmap="gray")
 
     # remove noise within seal
     out[:y_sep, :] = cv2.GaussianBlur(out[:y_sep, :], (5, 5), 0)
-    show_image(out, "top - blurred", False, cmap="gray")
+    show_image(out, "top - blurred", True, cmap="gray")
 
     out[:y_sep, :] = cv2.adaptiveThreshold(
         out[:y_sep, :], L, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2
     )
-    show_image(out, "top - thresholded (adaptive)", False, cmap="gray")
+    show_image(out, "top - thresholded (adaptive)", True, cmap="gray")
 
     # mask seal circle itself
     contours, _ = cv2.findContours(
@@ -214,6 +214,6 @@ def preprocess_image(image: np.ndarray, y_sep: int = 80) -> np.ndarray:
 
         out[:y_sep, :] = np.where(mask[:, :], out[:y_sep, :], white_background)
 
-    show_image(out, "top - without seal circle", False, cmap="gray")
+    show_image(out, "top - without seal circle", True, cmap="gray")
 
     return out
