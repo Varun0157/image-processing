@@ -17,7 +17,9 @@ class Transform(Enum):
     hog_feat = "hog_feat"
 
 
-def main(transform_type: Transform, batch_size: int, epochs: int, lr: float):
+def main(
+    transform_type: Transform, batch_size: int, epochs: int, lr: float, dropout: float
+):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"device: {device}")
 
@@ -40,7 +42,7 @@ def main(transform_type: Transform, batch_size: int, epochs: int, lr: float):
 
     visualise(os.path.join("data", "train.csv"), transform)
 
-    model = MLP(device=device)
+    model = MLP(device=device, dropout=dropout)
 
     train_model(
         model=model,
@@ -90,6 +92,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument("--lr", type=float, default=3.5e-5, help="Learning rate")
+    parser.add_argument("--dropout", type=float, default=0.1, help="Dropout rate")
 
     args = parser.parse_args()
 
@@ -100,4 +103,5 @@ if __name__ == "__main__":
         batch_size=args.batch_size,
         epochs=args.epochs,
         lr=args.lr,
+        dropout=args.dropout,
     )
