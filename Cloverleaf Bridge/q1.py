@@ -56,7 +56,11 @@ def calculate_area(
 
 def main() -> None:
     img = load_cloverfield_image()
-    show_image(img, "initial image", save=False)
+    show_image(img, "initial image", save=True)
+
+    # logging.info("just to check: calc cloverleaves on grayed image")
+    # processed = detect_cloverleaves(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
+    # show_image(processed, "filled cloverleaves on grayed", save=True, cmap="gray")
 
     custom_hist, open_cv_hist = get_histograms(img)
     visualise_histograms(custom_hist, open_cv_hist)

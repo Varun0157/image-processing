@@ -16,30 +16,27 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
     L = np.iinfo(img.dtype).max + 1
 
     out = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    show_image(out, "processing - gray", False, cmap="gray")
+    show_image(out, "processing - gray", True, cmap="gray")
 
     out = cv2.GaussianBlur(out, (5, 5), 0)  # kernel size, sigma
-    show_image(out, "processing - blurred", False, cmap="gray")
+    show_image(out, "processing - blurred", True, cmap="gray")
 
     _, out = cv2.threshold(out, 0, L, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    show_image(out, "processing - thresholded", False, cmap="gray")
+    show_image(out, "processing - thresholded", True, cmap="gray")
 
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7))
 
     out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel, iterations=1)
-    show_image(out, "processing - morphed - close", False, cmap="gray")
+    show_image(out, "processing - morphed - close", True, cmap="gray")
 
     out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel, iterations=1)
-    show_image(out, "processing - morphed - open", False, cmap="gray")
-
-    out = cv2.equalizeHist(out)
-    show_image(out, "processing - histogram equalised", False, cmap="gray")
+    show_image(out, "processing - morphed - open", True, cmap="gray")
 
     # NOTE: idea was that when initially attempting to identify contours, a lot of the lines were "connected" and so multiple
     # structures that I did not want to be detected as one contour, were being detected as such.
     # Thus, I thought if I dilate, I make the internal circumference of the cloverleaves independent of the rest of the structure.
     out = cv2.dilate(out, kernel, iterations=2)
-    show_image(out, "processing - dilated", False, cmap="gray")
+    show_image(out, "processing - dilated", True, cmap="gray")
 
     return out
 
@@ -97,14 +94,14 @@ def detect_cloverleaves(out: np.ndarray) -> np.ndarray:
         colour = (0, 0, 0) if not is_cl else (255, 255, 255)
         cv2.drawContours(out, [contour], 0, colour, -1)
 
-    show_image(out, "marking cloverleaves - filled", False, cmap="gray")
+    show_image(out, "marking cloverleaves - filled", True, cmap="gray")
 
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
     out = cv2.morphologyEx(out, cv2.MORPH_CLOSE, kernel, iterations=1)
-    show_image(out, "marking cloverleaves - morphed - close", False, cmap="gray")
+    show_image(out, "marking cloverleaves - morphed - close", True, cmap="gray")
 
     out = cv2.morphologyEx(out, cv2.MORPH_OPEN, kernel, iterations=1)
-    show_image(out, "marking cloverleaves - morphed - open", False, cmap="gray")
+    show_image(out, "marking cloverleaves - morphed - open", True, cmap="gray")
 
     return out
 

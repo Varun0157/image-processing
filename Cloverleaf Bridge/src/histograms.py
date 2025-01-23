@@ -1,3 +1,4 @@
+import os
 import time
 import logging
 from typing import Dict, Tuple
@@ -6,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 
-from src.utils import Colour
+from src.utils import Colour, get_save_path
 
 
 def get_histograms(
