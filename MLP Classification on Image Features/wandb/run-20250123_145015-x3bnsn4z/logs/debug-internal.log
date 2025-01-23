@@ -1,0 +1,16 @@
+{"time":"2025-01-23T14:50:15.440253357+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features/wandb/run-20250123_145015-x3bnsn4z/logs/debug-core.log"}
+{"time":"2025-01-23T14:50:15.542558422+05:30","level":"INFO","msg":"created new stream","id":"x3bnsn4z"}
+{"time":"2025-01-23T14:50:15.542578149+05:30","level":"INFO","msg":"stream: started","id":"x3bnsn4z"}
+{"time":"2025-01-23T14:50:15.542625734+05:30","level":"INFO","msg":"handler: started","stream_id":"x3bnsn4z"}
+{"time":"2025-01-23T14:50:15.542627405+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"x3bnsn4z"}
+{"time":"2025-01-23T14:50:15.542654849+05:30","level":"INFO","msg":"sender: started","stream_id":"x3bnsn4z"}
+{"time":"2025-01-23T14:50:16.233535287+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-23T16:13:47.726288491+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-23T16:13:47.727658445+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-23T16:13:48.727802857+05:30","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading wandb-summary.json","runtime_seconds":0.375644157,"progress":"162B/162B"},{"desc":"uploading output.log","runtime_seconds":0.375637538,"progress":"87.3KB/87.3KB"},{"desc":"uploading config.yaml","runtime_seconds":0.04690121,"progress":"629B/629B"}],"total_operations":3}}
+{"time":"2025-01-23T16:13:49.33651535+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-23T16:13:50.743144937+05:30","level":"INFO","msg":"stream: closing","id":"x3bnsn4z"}
+{"time":"2025-01-23T16:13:50.743155674+05:30","level":"INFO","msg":"handler: closed","stream_id":"x3bnsn4z"}
+{"time":"2025-01-23T16:13:50.743161875+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":"x3bnsn4z"}
+{"time":"2025-01-23T16:13:50.743179739+05:30","level":"INFO","msg":"sender: closed","stream_id":"x3bnsn4z"}
+{"time":"2025-01-23T16:13:50.743201242+05:30","level":"INFO","msg":"stream: closed","id":"x3bnsn4z"}

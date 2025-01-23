@@ -1,0 +1,16 @@
+{"time":"2025-01-23T16:46:40.821233546+05:30","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/home/varun/IIIT/SEM6/Computer Vision/assignments/assignment-1-Varun0157/MLP Classification on Image Features/wandb/run-20250123_164640-4sgwm925/logs/debug-core.log"}
+{"time":"2025-01-23T16:46:40.923386356+05:30","level":"INFO","msg":"created new stream","id":"4sgwm925"}
+{"time":"2025-01-23T16:46:40.923411915+05:30","level":"INFO","msg":"stream: started","id":"4sgwm925"}
+{"time":"2025-01-23T16:46:40.923463495+05:30","level":"INFO","msg":"writer: Do: started","stream_id":"4sgwm925"}
+{"time":"2025-01-23T16:46:40.923574551+05:30","level":"INFO","msg":"handler: started","stream_id":"4sgwm925"}
+{"time":"2025-01-23T16:46:40.923588518+05:30","level":"INFO","msg":"sender: started","stream_id":"4sgwm925"}
+{"time":"2025-01-23T16:46:41.355537753+05:30","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-23T18:15:01.10209191+05:30","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-23T18:15:01.10287296+05:30","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-23T18:15:02.102642872+05:30","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading output.log","runtime_seconds":0.289607256,"progress":"87.0KB/87.0KB"},{"desc":"uploading wandb-summary.json","runtime_seconds":0.289580999,"progress":"163B/163B"},{"desc":"uploading config.yaml","runtime_seconds":0.02781029,"progress":"628B/628B"}],"total_operations":3}}
+{"time":"2025-01-23T18:15:03.772124796+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-23T18:15:05.29295388+05:30","level":"INFO","msg":"stream: closing","id":"4sgwm925"}
+{"time":"2025-01-23T18:15:05.293025945+05:30","level":"INFO","msg":"handler: closed","stream_id":"4sgwm925"}
+{"time":"2025-01-23T18:15:05.293041352+05:30","level":"INFO","msg":"writer: Close: closed","stream_id":"4sgwm925"}
+{"time":"2025-01-23T18:15:05.293092783+05:30","level":"INFO","msg":"sender: closed","stream_id":"4sgwm925"}
+{"time":"2025-01-23T18:15:05.293146872+05:30","level":"INFO","msg":"stream: closed","id":"4sgwm925"}
