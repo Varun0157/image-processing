@@ -73,6 +73,9 @@ class MLP(nn.Module):
             current_size = hidden_size
         self.layers.append(nn.Linear(current_size, num_classes, device=device))
 
+        # NOTE: softmax not needed because stuff like CrossEntropyLoss expects raw logits
+        # they apply softmax internally within the loss calculation
+
     def forward(self, x):
         out = x.to(self.device)
         for layer in self.layers:
