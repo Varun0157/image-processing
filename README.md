@@ -8,8 +8,6 @@ conda env create -f env.yml
 ```
 
 Alternatively, install the dependencies by referring to those in `docs/env-hist.yml`. 
-```
-```
 
 ## Problems  
 
@@ -20,9 +18,11 @@ The initial image is available in `./Cloverleaf Bridge/data/cloverleaf_interchan
 
 #### Results 
 The final image with contour borders marked is as below: 
+
 ![final image](./Cloverleaf Bridge/res/contour borders.png)
 
 The circles within the contours are marked below:
+
 ![circles](./Cloverleaf Bridge/res/marked circles.png)
 
 #### Run 
@@ -31,10 +31,6 @@ To see the images along with all intermediate pre-processing, run as follows:
 cd Cloverleaf\ Bridge
 python -m q1
 ```
-```
-```
-
-
 
 ### Line Segmentation in Historical Documents 
 to run line segmentation
