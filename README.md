@@ -82,7 +82,8 @@ python -m src.main --transform <transform>
 #### Results 
 
 The model results on blurred and equalised images with a dropout of 0.2 can be seen below: 
-![blur_equal 0.2](./MLP Classification on Image Features/res/dr0.2/model-blurred_equalised.png)
+
+![blur_equal 0.2](./MLP%20Classification%20on%20Image%20Features/res/dr0.2/model-blurred_equalised.png)
 
 Other details such as the test loss, and a number of ablations can be found in the [report](./MLP%20Classification%20on%20Image%20Features/report.pdf) and in the [res dir](./MLP%20Classification%20on%20Image%20Features/res/).
 
