@@ -118,7 +118,7 @@ def mark_circles(img: np.ndarray, circles: Optional[np.ndarray]) -> np.ndarray:
 
     annotated = img.copy()
 
-    OUTER_COLOUR, CENTER_COLOUR = (0, 255, 0), (0, 0, 255)
+    OUTER_COLOUR, CENTER_COLOUR = (0, 255, 0), (255, 0, 0)
     circles = np.round(circles).astype("int")
     for i in circles[0, :]:
         center, rad = (i[0], i[1]), i[2]
