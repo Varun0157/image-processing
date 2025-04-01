@@ -82,7 +82,7 @@ def main() -> None:
         processed, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
     )
     annotated_contours = img.copy()
-    cv2.drawContours(annotated_contours, cloverleaves, -1, (255, 0, 0), 1)
+    cv2.drawContours(annotated_contours, cloverleaves, -1, (255, 0, 0), 3)
     show_image(annotated_contours, "contour borders", save=True)
 
     _, circles = calculate_radii(img, processed)
