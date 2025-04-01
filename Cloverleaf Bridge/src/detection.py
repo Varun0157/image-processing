@@ -14,7 +14,7 @@ def preprocess_image(img: np.ndarray) -> np.ndarray:
 
     L = np.iinfo(img.dtype).max + 1
 
-    out = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    out = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     show_image(out, "processing - gray", True, cmap="gray")
 
     out = cv2.GaussianBlur(out, (5, 5), 0)  # kernel size, sigma

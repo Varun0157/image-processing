@@ -19,6 +19,7 @@ class Colour(Enum):
 
 def load_image(path: str, log_info: bool = True) -> np.ndarray:
     img = cv2.imread(path)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     if log_info:
         logging.info(f"loaded image from {path}")

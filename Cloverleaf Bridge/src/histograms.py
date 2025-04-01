@@ -1,4 +1,3 @@
-import os
 import time
 import logging
 from typing import Dict, Tuple
@@ -7,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 
-from src.utils import Colour, get_save_path
+from src.utils import Colour
 
 
 def get_histograms(
@@ -15,7 +14,7 @@ def get_histograms(
 ) -> Tuple[Dict[Colour, np.ndarray], Dict[Colour, np.ndarray]]:
     logging.info("calculating histograms ... ")
 
-    COLOURS = [Colour.BLUE, Colour.GREEN, Colour.RED]
+    COLOURS = [Colour.RED, Colour.GREEN, Colour.BLUE]
     NUM_CHANNELS = img.shape[2]
     assert (
         NUM_CHANNELS == 3
@@ -58,7 +57,7 @@ def visualise_histograms(
     # 2. add a binary version that convers to black and white and plots both - still maintain the columns, though.
 
     fig, axes = plt.subplots(3, 2, figsize=(12, 8))
-    for i, colour in enumerate([Colour.BLUE, Colour.GREEN, Colour.RED]):
+    for i, colour in enumerate([Colour.RED, Colour.GREEN, Colour.BLUE]):
         col_val = colour.value.lower()
         assert len(custom[colour]) == len(opencv[colour])
         NUM_LEVELS = len(custom[colour])

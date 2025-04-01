@@ -147,7 +147,7 @@ def preprocess_image(image: np.ndarray, y_sep: int = 80) -> np.ndarray:
 
     L = np.iinfo(image.dtype).max + 1
 
-    out = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    out = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     show_image(out, "full - gray", True, cmap="gray")
 
     # bottom half
