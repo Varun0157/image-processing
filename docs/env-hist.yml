@@ -1,0 +1,20 @@
+name: cv-as1
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - conda-forge::mamba
+  - pandas
+  - scikit-learn
+  - opencv
+  - numpy
+  - matplotlib
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.4
+  - tqdm
+  - seaborn
+  - wandb
+  - scikit-image
+prefix: /home/varun/miniconda3/envs/cv-as1
