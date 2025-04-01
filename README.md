@@ -15,16 +15,16 @@ Alternatively, install the dependencies by referring to those in `docs/env-hist.
 
 The initial image is available in `./Cloverleaf Bridge/data/cloverleaf_interchange.png`. 
 
-<img src="Cloverleaf Bridge/data/cloverleaf_interchange.png" alt="final image" width="300">
+<img src="Cloverleaf Bridge/data/cloverleaf_interchange.png" alt="initial cloverleaf interchange" width="300">
 
 #### Results 
 The final image with contour borders marked is as below: 
 
-<img src="./Cloverleaf Bridge/res/contour borders.png" alt="final image" width="300">
+<img src="./Cloverleaf Bridge/res/contour borders.png" alt="contour borders" width="300">
 
 The circles within the contours are marked below:
 
-<img src="./Cloverleaf Bridge/res/marked circles.png" alt="final image" width="300">
+<img src="./Cloverleaf Bridge/res/marked circles.png" alt="contour circles" width="300">
 
 #### Run 
 To see the images along with all intermediate pre-processing, run as follows: 
@@ -33,11 +33,38 @@ cd Cloverleaf\ Bridge
 python -m main
 ```
 
+#### Further Details 
+See the [report](./Cloverleaf%20Bridge/report.pdf).
+
 ### Line Segmentation in Historical Documents 
-to run line segmentation
+
+The initial image is available in `./Line Segmentation in Historical Document/data/historical-doc.png`. 
+
+<img src="./Line Segmentation in Historical Document/data/historical-doc.png" alt="initial historical doc" width="300">
+
+#### Results 
+The final image with text segmentation is as below:
+
+<img src="./Line Segmentation in Historical Document/res/bounding boxes.png" alt="initial historical doc" width="300">
+
+The final image with line wise segmentation is as below:
+
+<img src="./Line Segmentation in Historical Document/res/line-wise bounding boxes.png" alt="initial historical doc" width="300">
+
+The final image with polygonal text boundaries is: 
+
+
+<img src="./Line Segmentation in Historical Document/res/polygons.png" alt="initial historical doc" width="300">
+
+#### Run 
+
 ```sh
+cd "Line Segmentation in Historical Document"
 python -m main 
 ```
+
+#### Further Details 
+See the [report](./Line%20Segmentation%20in%20Historical%20Document/report.pdf).
 
 ### MLP Classification on Image Features 
 to run mlp classification:
