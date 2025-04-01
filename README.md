@@ -13,15 +13,11 @@ Alternatively, install the dependencies by referring to those in `docs/env-hist.
 
 ### Cloverleaf Bridge 
 
-The initial image is available in `./Cloverleaf Bridge/data/cloverleaf_interchange.png`. 
+#### Results
 
-<img src="Cloverleaf Bridge/data/cloverleaf_interchange.png" alt="initial cloverleaf interchange" width="300">
-
-#### Results 
-
-| Contour Borders | Marked Circles |
-| --------------- | -------------- |
-| <img src="./Cloverleaf Bridge/res/contour borders.png" alt="contour borders" width="300"> | <img src="./Cloverleaf Bridge/res/marked circles.png" alt="contour circles" width="300"> |
+| Initial Image | Contour Borders | Marked Circles |
+| ------------- | --------------- | -------------- |
+| <img src="./Cloverleaf Bridge/data/cloverleaf_interchange.png" alt="initial cloverleaf interchange" width="300"> | <img src="./Cloverleaf Bridge/res/contour borders.png" alt="contour borders" width="300"> | <img src="./Cloverleaf Bridge/res/marked circles.png" alt="contour circles" width="300"> |
 
 #### Run 
 To see the images along with all intermediate pre-processing, run as follows: 
@@ -35,15 +31,11 @@ See the [report](./Cloverleaf%20Bridge/report.pdf).
 
 ### Line Segmentation in Historical Documents 
 
-The initial image is available in `./Line Segmentation in Historical Document/data/historical-doc.png`. 
+#### Results
 
-<img src="./Line Segmentation in Historical Document/data/historical-doc.png" alt="initial historical doc" width="300">
-
-#### Results 
-
-| Text Segmentation | Line-wise Segmentation | Polygonal Boundaries |
-| ----------------- | ---------------------- | -------------------- |
-| <img src="./Line Segmentation in Historical Document/res/bounding boxes.png" alt="initial historical doc" width="300"> | <img src="./Line Segmentation in Historical Document/res/line-wise bounding boxes.png" alt="initial historical doc" width="300"> | <img src="./Line Segmentation in Historical Document/res/polygons.png" alt="initial historical doc" width="300"> |
+| Initial Image | Text Segmentation | Line-wise Segmentation | Polygonal Boundaries |
+| ------------- | ----------------- | ---------------------- | -------------------- |
+| <img src="./Line Segmentation in Historical Document/data/historical-doc.png" alt="initial historical doc" width="300"> | <img src="./Line Segmentation in Historical Document/res/bounding boxes.png" alt="text segmentation" width="300"> | <img src="./Line Segmentation in Historical Document/res/line-wise bounding boxes.png" alt="line-wise segmentation" width="300"> | <img src="./Line Segmentation in Historical Document/res/polygons.png" alt="polygonal boundaries" width="300"> |
 
 #### Run 
 
