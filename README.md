@@ -30,19 +30,19 @@ The circles within the contours are marked below:
 To see the images along with all intermediate pre-processing, run as follows: 
 ```sh 
 cd Cloverleaf\ Bridge
-python -m q1
+python -m main
 ```
 
 ### Line Segmentation in Historical Documents 
 to run line segmentation
 ```sh
-python -m q2 
+python -m main 
 ```
 
 ### MLP Classification on Image Features 
 to run mlp classification:
 ```sh 
-python -m src.q3 --transform <transform> 
+python -m src.main --transform <transform> 
 ```
 
 before that process the data using:
