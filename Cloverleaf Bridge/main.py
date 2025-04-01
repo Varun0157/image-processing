@@ -65,7 +65,7 @@ def main() -> None:
     visualise_histograms(custom_hist, open_cv_hist)
 
     logging.info("finding circles in the raw image ... ")
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     circles = find_circles(gray)
     annotated = mark_circles(img, circles)
     show_image(annotated, "raw circles", save=True, cmap="gray")
