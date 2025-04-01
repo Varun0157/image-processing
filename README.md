@@ -17,7 +17,7 @@ Alternatively, install the dependencies by referring to those in `docs/env-hist.
 
 | Initial Image | Contour Borders | Marked Circles |
 | ------------- | --------------- | -------------- |
-| <img src="./Cloverleaf Bridge/data/cloverleaf_interchange.png" alt="initial cloverleaf interchange" width="300"> | <img src="./Cloverleaf Bridge/res/contour borders.png" alt="contour borders" width="300"> | <img src="./Cloverleaf Bridge/res/marked circles.png" alt="contour circles" width="300"> |
+| <img src="./Cloverleaf Bridge/data/cloverleaf_interchange.png" alt="initial cloverleaf interchange" width="300"> | <img src="./Cloverleaf Bridge/res/contour borders.png" alt="contour borders" width="300"> | <img src="./Cloverleaf Bridge/res/radii.png" alt="contour circles" width="300"> |
 
 #### Run 
 To see the images along with all intermediate pre-processing, run as follows: 

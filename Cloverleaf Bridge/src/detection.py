@@ -117,7 +117,6 @@ def mark_circles(img: np.ndarray, circles: Optional[np.ndarray]) -> np.ndarray:
         return img
 
     annotated = img.copy()
-    annotated = cv2.cvtColor(annotated, cv2.COLOR_RGB2BGR)
 
     OUTER_COLOUR, CENTER_COLOUR = (0, 255, 0), (0, 0, 255)
     circles = np.round(circles).astype("int")
@@ -149,5 +148,4 @@ def mark_circles(img: np.ndarray, circles: Optional[np.ndarray]) -> np.ndarray:
 
         logging.info(f"\tcircle at {center_text} with radius {rad}")
 
-    annotated = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
     return annotated
