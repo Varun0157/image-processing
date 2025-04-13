@@ -1,6 +1,4 @@
-# Image Processing
-
-A bunch of problem statements and experiments involving digital image processing and simple classification, done as a part of Assignment 1 of the Computer Vision course (IIIT-Hyderabad, Spring '25). The assignment details can be found [in the assignment document](./docs/CV_S25_A1.pdf).
+A bunch of problem statements and experiments involving **digital image processing** and simple classification, done as a part of Assignment 1 of the Computer Vision course (IIIT-Hyderabad, Spring '25). The assignment details can be found [in the assignment document](./docs/CV_S25_A1.pdf).
 
 ## Problems
 
